@@ -11,6 +11,9 @@ module.exports = {
         'secondary': '#7B2049',
         'tertiary': '#1E2762',
       },
+      aspectRatio: {
+        'video': '2/3',
+      }
     },
   },
   plugins: [],

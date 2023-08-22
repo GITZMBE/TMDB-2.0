@@ -27,7 +27,7 @@ function Header() {
             <BiSearch size={22} className='fill-gray-400 hover:fill-white' onClick={handleClick} />
           </button>          
         </div>
-        <AiOutlineMenu size={22} className='fill-gray-400 hover:fill-white' />
+        <AiOutlineMenu size={22} className='fill-gray-400 hover:fill-white cursor hidden sm:block' />
       </div>
     </header>
   );
