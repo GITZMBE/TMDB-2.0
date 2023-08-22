@@ -6,7 +6,7 @@ function Layer() {
     <>
       <Outlet />
     </>
-  )
+  );
 }
 
 export default Layer;
