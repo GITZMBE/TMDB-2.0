@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import { FaStream } from "react-icons/fa";
 import { BiSearch } from "react-icons/bi";
 import { AiOutlineMenu } from 'react-icons/ai';
@@ -18,8 +19,10 @@ function Header() {
   }
 
   return (
-    <header id="header" className='fixed flex justify-between items-center w-full px-12 py-4'>
-      <FaStream size={28} className='fill-gray-400' />
+    <header id="header" className='fixed z-10 flex justify-between items-center w-full px-12 py-4 bg-quaternary'>
+      <Link to='home'>
+        <FaStream size={28} className='fill-gray-400' />
+      </Link>
       <div className='flex gap-4'>
         <div id="search-container" className="flex items-center">
           <input type='text' id="searchBar" className="w-0 outline-none text-sm transitioning" />
