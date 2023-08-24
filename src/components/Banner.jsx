@@ -8,25 +8,26 @@ function Banner({ topMovie, children }) {
     backgroundImage: `url('${baseUrl + url}')`,
   }
   const title = topMovie.title;
-  const rating = topMovie.vote_average * 10;
+  let rating = topMovie.vote_average * 10;
+  rating = rating.toString().substring(0, 2);
   const releaseDate = topMovie.release_date;
   const synopsis = topMovie.overview;
 
   return (
-    <div id='banner' style={bannerStyle} className='relative w-full aspect-video background-center'>
+    <div id='banner' style={bannerStyle} className='relative w-full aspect-video min-h-[50vh] max-h-screen background-center'>
       {children}
-      <div id="filter" className="absolute top-0 left-0 bottom-0 right-0 py-8 px-4 w-full bg-gradient-to-r from-black from-30%">
+      <div id="filter" className="absolute top-0 left-0 bottom-0 right-0 pt-[60px] pb-8 px-4 sm:px-12 w-full bg-gradient-to-r from-black from-30% opacity-90">
         <div className="flex flex-col justify-center gap-2 md:w-3/5 lg:w-2/5 h-full">
           <div id="title-container" className="flex items-center gap-4 py-2">
             <h1 className="text-3xl sm:text-5xl font-bold">{title}</h1>
             <AiFillPlayCircle size={36} className="fill-primary min-w-[36px]" />
           </div>
           <p className="space-x-2 font-bold text-white text-sm uppercase">
-            <span className="px-2 py-1 rounded bg-green-600">{rating} %</span>
-            <span className="px-2 py-1 rounded bg-gray-800">HD</span>
-            <span className="px-2 py-1 rounded bg-gray-800">{releaseDate}</span>
+            <span className="px-1 sm:px-2 py-[2px] sm:py-1 text-sm sm:text-base rounded bg-green-600">{rating} %</span>
+            <span className="px-1 sm:px-2 py-[2px] sm:py-1 text-sm sm:text-base rounded bg-gray-800">HD</span>
+            <span className="px-1 sm:px-2 py-[2px] sm:py-1 text-sm sm:text-base rounded bg-gray-800">{releaseDate}</span>
           </p>
-          <p className="text-sm sm:text-base">{synopsis}</p>          
+          <p className="max-h-16 sm:max-h-none overflow-y-hidden text-sm sm:text-base">{synopsis}</p>          
         </div>
       </div>
     </div>

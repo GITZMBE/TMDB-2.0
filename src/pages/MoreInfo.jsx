@@ -31,7 +31,8 @@ function MoreInfo() {
     }
 
     const popularity = selectedMovieObject.vote_average;
-    const popularityPercent = popularity * 10;
+    let popularityPercent = popularity * 10;
+    popularityPercent = popularityPercent.toString().substring(0, 2);
     const popularityStyle = {
         width: `${popularityPercent}%`,
     }
@@ -41,7 +42,7 @@ function MoreInfo() {
     useEffect(() => {
       fetchVideoKey(selectedMovieObject.id, setVideoInfo);
     }, [selectedMovieObject, setVideoInfo])
-    console.log('id:', videoInfo.id,'\n key: ', videoInfo.key)
+    // console.log('id:', videoInfo.id,'\n key: ', videoInfo.key)
 
     const embededUrl = `${embededBaseUrl + videoInfo.key}?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1`;
 
@@ -64,7 +65,7 @@ function MoreInfo() {
                     <h2 className="text-xl font-bold">Votes: </h2>
                     <div className="space-y-2">
                         <AiOutlineArrowUp className="fill-green-500 hover:fill-green-800 cursor-pointer" onClick={increaseVotes} />
-                        <p>{voteChange}</p>
+                        <p className="selection:bg-transparent">{voteChange}</p>
                         <AiOutlineArrowDown className="fill-red-500 hover:fill-red-800 cursor-pointer" onClick={decreaseVotes} />
                     </div>                    
                 </div>
