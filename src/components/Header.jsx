@@ -67,8 +67,8 @@ function Header() {
   }
 
   return (
-    <header id="header" className='fixed z-10 flex flex-col justify-start w-full max-h-[60px] overflow-y-hidden py-4 bg-quaternary'>
-      <div className="flex justify-between items-center w-full px-4 sm:px-12">
+    <header id="header" className='fixed z-10 flex flex-col justify-start w-full max-h-[60px] overflow-y-hidden bg-quaternary'>
+      <div className="flex justify-between items-center w-full py-4 px-4 sm:px-12">
         <Link to='home'>
           <FaStream size={28} className='fill-gray-400' />
         </Link>
@@ -82,11 +82,11 @@ function Header() {
           <AiOutlineMenu size={22} className='fill-gray-400 hover:fill-white cursor hidden sm:block' />
         </div>        
       </div>
-      <div id="movieSection" className="flex flex-wrap gap-4 px-12 w-full h-full overflow-y-auto hide-scrollbar">
+      <div id="movieSection" className="flex flex-wrap items-start gap-4 px-12 w-full max-h-full overflow-y-auto hide-scrollbar">
         {Object.keys(searchObject).length > 0 ? (
           searchObject.map(movie => (
-            <div onClick={handleClickPoster}>
-              <Poster key={movie.id} movie={movie} />
+            <div key={movie.id} className="w-fit h-fit" onClick={handleClickPoster}>
+              <Poster movie={movie} />
             </div>
           ))
         ) : null}
