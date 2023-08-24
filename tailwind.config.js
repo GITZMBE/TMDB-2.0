@@ -13,7 +13,7 @@ module.exports = {
         'quaternary': '#0B1416',
       },
       aspectRatio: {
-        'video': '2/3',
+        'poster': '2/3',
       }
     },
   },

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useMovieContext } from "../components/MovieContext";
 import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai';
+import { fetchVideoKey } from '../utils/fetch';
+import Trailer from "../components/Trailer";
+import Banner from "../components/Banner";
 
 function MoreInfo() {
     const { selectedMovieObject } = useMovieContext();
@@ -32,11 +35,22 @@ function MoreInfo() {
     const popularityStyle = {
         width: `${popularityPercent}%`,
     }
+    // const baseVideoUrl = 'https://www.youtube.com/watch?v=';
+    const embededBaseUrl = 'https://www.youtube.com/embed/';
+    const [videoInfo, setVideoInfo] = useState({});
+    useEffect(() => {
+      fetchVideoKey(selectedMovieObject.id, setVideoInfo);
+    }, [selectedMovieObject, setVideoInfo])
+    console.log('id:', videoInfo.id,'\n key: ', videoInfo.key)
+
+    const embededUrl = `${embededBaseUrl + videoInfo.key}?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1`;
 
     return (
         <div id="moreInfo" className="pt-[60px]">
             <div className="w-full py-4 px-12 bg-quaternary text-white space-y-4">
-                <div style={bgStyle} className="w-full h-[75vh] background-center"></div>
+                <Banner style={bgStyle} topMovie={selectedMovieObject}>
+                    <Trailer embededUrl={embededUrl} />
+                </Banner>
                 <h1 className="text-3xl font-bold">{title}</h1>
                 <div className="pb-4">
                     <h2 className="text-xl font-bold">Description</h2>
