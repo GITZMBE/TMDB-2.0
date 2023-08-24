@@ -3,14 +3,13 @@ import React from "react";
 function Trailer({ embededUrl }) {
   setTimeout(() => {
       const trailer = document.getElementById('trailer');
-      trailer.classList.remove('hidden');
       trailer.classList.add('animate-fade-in')
-  }, 4000);
+  }, 5000);
 
   return (
     <iframe
       id='trailer'
-      className='absolute top-0 bottom-0 left-0 right-0 w-full h-full opacity-0 hidden'
+      className='absolute top-0 bottom-0 left-0 right-0 w-full h-full opacity-0'
       src={embededUrl}
       title='YouTube video player'
       frameborder='0'
