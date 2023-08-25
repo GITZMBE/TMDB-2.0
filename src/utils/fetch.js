@@ -54,7 +54,8 @@ export const fetchPopular = async (callback) => {
   };
   const responce = await fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options);
   const results = await responce.json();
-  callback(results);
+  const data = results.results;
+  callback(data);
 }
 
 export const fetchQuery = async (query, callback) => {

@@ -16,7 +16,6 @@ function TopRated() {
   };
 
   const scrollContainerRef = useRef(null);
-  const scrollContentRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
@@ -27,18 +26,22 @@ function TopRated() {
     scrollContainerRef.current.style.cursor = 'grabbing';
   };
   const handleMouseUp = () => {
-    setIsDragging(false);
-    scrollContainerRef.current.style.cursor = 'grab';
+    if (isDragging) {
+      setIsDragging(false);
+      scrollContainerRef.current.style.cursor = 'grab';
+    }
   };
   const handleMouseLeave = () => {
-    setIsDragging(false);
-    scrollContainerRef.current.style.cursor = 'grab';
+    if (isDragging) {
+      setIsDragging(false);
+      scrollContainerRef.current.style.cursor = 'grab';
+    }
   };
   const handleMouseMove = (e) => {
     if (!isDragging) return;
     e.preventDefault();
     const x = e.pageX - scrollContainerRef.current.offsetLeft;
-    const walk = (x - startX) * 2; // Adjust the scrolling speed
+    const walk = (x - startX) * 2;
     scrollContainerRef.current.scrollLeft = scrollLeft - walk;
   };
 
@@ -53,7 +56,7 @@ function TopRated() {
           onMouseLeave={handleMouseLeave}
           onMouseMove={handleMouseMove}
         >
-          <div className="flex gap-4" rel={scrollContentRef}>
+          <div className="flex gap-4">
             {renderMovies()}
           </div>
         </div>

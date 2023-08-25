@@ -3,13 +3,15 @@ import { Trailer } from './Trailer';
 import Banner from "./Banner";
 import TopRated from "./TopRated";
 import { fetchTopMovie, fetchVideoKey } from "../utils/fetch";
+import Popular from "./Popular";
+// import MoviesContainer from "./MoviesContainer";
 
 function Movies() {
   const [bannerObject, setBannerObject] = useState('');
   const [videoInfo, setVideoInfo] = useState({});
   useEffect(() => {
     fetchTopMovie(setBannerObject);
-    bannerObject ? fetchVideoKey(bannerObject.id, setVideoInfo) : setVideoInfo('');
+    bannerObject ? fetchVideoKey(bannerObject.id, setVideoInfo) : setVideoInfo({});
   }, [setBannerObject, bannerObject, setVideoInfo]);
 
   const embededBaseUrl = 'https://www.youtube.com/embed/';
@@ -22,6 +24,9 @@ function Movies() {
       </Banner>
       <main className="w-full">
         <TopRated />
+        <Popular />
+        {/* <MoviesContainer title='Top Rated' fetchFunction={fetchTopMovie} />
+        <MoviesContainer title='Popular' fetchFunction={fetchPopular} /> */}
       </main>
     </div>
   );
