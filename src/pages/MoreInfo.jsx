@@ -4,6 +4,7 @@ import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai';
 import { fetchVideoKey } from '../utils/fetch';
 import Trailer from "../components/Trailer";
 import Banner from "../components/Banner";
+import Related from "../components/Related";
 
 function MoreInfo() {
     const { selectedMovieObject } = useMovieContext();
@@ -73,6 +74,7 @@ function MoreInfo() {
                     <div style={popularityStyle} className="bg-green-500 h-full"></div>
                     <p className="absolute w-full text-center leading-[48px] tracking-[16px]">Popularity {popularityPercent}%</p>
                 </div>
+                <Related id={selectedMovieObject.id} />
             </div>
         </div>
     )

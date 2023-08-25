@@ -4,6 +4,8 @@ import Banner from "./Banner";
 import TopRated from "./TopRated";
 import { fetchTopMovie, fetchVideoKey } from "../utils/fetch";
 import Popular from "./Popular";
+import Upcoming from "./Upcoming";
+import Favorites from "./Favorites";
 // import MoviesContainer from "./MoviesContainer";
 
 function Movies() {
@@ -23,8 +25,10 @@ function Movies() {
         <Trailer embededUrl={embededUrl} className='hidden' />
       </Banner>
       <main className="w-full">
+        <Favorites />
         <TopRated />
         <Popular />
+        <Upcoming />
         {/* <MoviesContainer title='Top Rated' fetchFunction={fetchTopMovie} />
         <MoviesContainer title='Popular' fetchFunction={fetchPopular} /> */}
       </main>

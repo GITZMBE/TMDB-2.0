@@ -41,7 +41,7 @@ function TopRated() {
     if (!isDragging) return;
     e.preventDefault();
     const x = e.pageX - scrollContainerRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
+    const walk = (x - startX) * 1.5;
     scrollContainerRef.current.scrollLeft = scrollLeft - walk;
   };
 

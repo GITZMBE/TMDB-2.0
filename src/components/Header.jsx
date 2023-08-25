@@ -14,33 +14,19 @@ function Header() {
     const movieSection = document.getElementById('movieSection');
     if (openSearch) {
       searchBar.classList.remove('w-0')
-      searchBar.classList.add('w-[50vw]', 'sm:w-[70vw]', 'md:w-[75vw]')
-      searchBar.classList.add('px-2')
+      searchBar.classList.add('w-[50vw]', 'sm:w-[70vw]', 'md:w-[75vw]', 'px-2')
       searchBar.focus()
-      header.classList.add('h-screen')
-      header.classList.remove('max-h-[60px]')
-      header.classList.add('items-start')
-      header.classList.remove('items-center')
+      header.classList.add('h-screen', 'items-start')
+      header.classList.remove('max-h-[60px]', 'items-center')
       movieSection.classList.add('py-4');
     } else {
       searchBar.classList.add('w-0');
-      searchBar.classList.remove('w-[50vw]', 'sm:w-[70vw]', 'md:w-[75vw]');
-      searchBar.classList.remove('px-2');
+      searchBar.classList.remove('w-[50vw]', 'sm:w-[70vw]', 'md:w-[75vw]', 'px-2');
       searchBar.blur();
-      header.classList.remove('h-screen');
-      header.classList.add('max-h-[60px]');
-      header.classList.add('items-center');
-      header.classList.remove('items-start');
+      header.classList.remove('h-screen', 'items-start');
+      header.classList.add('max-h-[60px]', 'items-center');
       movieSection.classList.remove('py-4');
     }
-    // openSearch ?  : 
-    // openSearch ?  : 
-    // openSearch ?  : 
-    // openSearch ? : 
-    // openSearch ?  : 
-    // openSearch ?  : 
-    // openSearch ?  : 
-    // openSearch ?  : 
   }, [openSearch])
   
   const [search, setSearch] = useState('');

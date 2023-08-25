@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import { fetchPopular } from "../utils/fetch";
+import { fetchUpcoming } from "../utils/fetch";
 import Poster from "./Poster";
 
-function Popular() {
+function Upcoming() {
   const [movies, setMovies] = useState({});
   useEffect(() => {
-    fetchPopular(setMovies);
+    fetchUpcoming(setMovies);
   }, [movies])
 
   const scrollContainerRef = useRef(null);
@@ -40,7 +40,7 @@ function Popular() {
 
   return (
     <div className="py-4 px-4 sm:px-12">
-      <h2 className="font-bold text-3xl">Popular</h2>
+      <h2 className="font-bold text-3xl">Upcoming</h2>
       <div 
         id='popular' 
         className="overflow-auto hide-scrollbar py-4"
@@ -61,8 +61,7 @@ function Popular() {
         </div>
       </div>      
     </div>
-
   );
 }
 
-export default Popular;
+export default Upcoming;

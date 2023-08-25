@@ -1,12 +1,24 @@
 import React, { useState, useEffect, useRef } from "react";
-import { fetchPopular } from "../utils/fetch";
+// import { fetchFavorites } from "../utils/fetch";
 import Poster from "./Poster";
 
-function Popular() {
+function Favorites() {
   const [movies, setMovies] = useState({});
   useEffect(() => {
-    fetchPopular(setMovies);
-  }, [movies])
+    const updateFavorites = () => {
+      const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+      setMovies(storedFavorites);
+    };
+    updateFavorites();
+    window.addEventListener("storage", (event) => {
+      if (event.key === "favorites") {
+        updateFavorites();
+      }
+    });
+    return () => {
+      window.removeEventListener("storage", updateFavorites);
+    };
+  }, []);
 
   const scrollContainerRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -40,7 +52,7 @@ function Popular() {
 
   return (
     <div className="py-4 px-4 sm:px-12">
-      <h2 className="font-bold text-3xl">Popular</h2>
+      <h2 className="font-bold text-3xl">Favorites</h2>
       <div 
         id='popular' 
         className="overflow-auto hide-scrollbar py-4"
@@ -61,8 +73,7 @@ function Popular() {
         </div>
       </div>      
     </div>
-
   );
 }
 
-export default Popular;
+export default Favorites;
