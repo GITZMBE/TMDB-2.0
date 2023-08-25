@@ -1,6 +1,6 @@
 import React from "react";
 
-function Trailer({ embededUrl }) {
+export function Trailer({ embededUrl }) {
   setTimeout(() => {
       const trailer = document.getElementById('trailer');
       trailer.classList.add('animate-fade-in')

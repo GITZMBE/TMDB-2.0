@@ -82,15 +82,18 @@ function Header() {
           <AiOutlineMenu size={22} className='fill-gray-400 hover:fill-white cursor hidden sm:block' />
         </div>        
       </div>
-      <div id="movieSection" className="flex flex-wrap items-start gap-4 px-12 w-full max-h-full overflow-y-auto hide-scrollbar">
-        {Object.keys(searchObject).length > 0 ? (
-          searchObject.map(movie => (
-            <div key={movie.id} className="w-fit h-fit" onClick={handleClickPoster}>
-              <Poster movie={movie} />
-            </div>
-          ))
-        ) : null}
+      <div className="flex justify-center w-full">
+        <div id="movieSection" className="flex flex-wrap items-start gap-4 px-12 w-full max-w-[1408px] max-h-full overflow-y-auto hide-scrollbar">
+          {Object.keys(searchObject).length > 0 ? (
+            searchObject.map(movie => (
+              <div key={movie.id} className="w-fit h-fit" onClick={handleClickPoster}>
+                <Poster movie={movie} />
+              </div>
+            ))
+          ) : null}
+        </div>        
       </div>
+
     </header>
   );
 }

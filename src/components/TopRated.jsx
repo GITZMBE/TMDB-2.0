@@ -1,18 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import Poster from "./Poster";
-import { fetchTopMovie, fetchTopMovies, fetchVideoKey } from '../utils/fetch';
-import Banner from "./Banner";
-import Trailer from "./Trailer";
+import { fetchTopMovies } from '../utils/fetch';
 
 function TopRated() {
   const [data, setData] = useState([]);
-  const [bannerObject, setBannerObject] = useState('');
-  const [videoInfo, setVideoInfo] = useState({});
   useEffect(() => {
     fetchTopMovies(setData);
-    fetchTopMovie(setBannerObject);
-    bannerObject ? fetchVideoKey(bannerObject.id, setVideoInfo) : setVideoInfo('');
-  }, [setData, setBannerObject, bannerObject, setVideoInfo]);
+  }, [setData]);
 
   const renderMovies = () => {
     const movies = data;
@@ -20,9 +14,6 @@ function TopRated() {
       <Poster key={movie.id} movie={movie} />
     ));
   };
-
-  const embededBaseUrl = 'https://www.youtube.com/embed/';
-  const embededUrl = `${embededBaseUrl + videoInfo.key}?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1`;
 
   const scrollContainerRef = useRef(null);
   const scrollContentRef = useRef(null);
@@ -52,10 +43,6 @@ function TopRated() {
   };
 
   return (
-    <div id='topRated' className='flex flex-col pb-[60px] bg-quaternary min-h-screen text-white'>
-      <Banner topMovie={bannerObject}>
-        <Trailer embededUrl={embededUrl} className='hidden' />
-      </Banner>
       <div className="py-4 px-4 sm:px-12">
         <h2 className="font-bold text-3xl">Top Rated</h2>
         <div 
@@ -71,7 +58,6 @@ function TopRated() {
           </div>
         </div>
       </div>
-    </div>
   );
 }
 
