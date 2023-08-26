@@ -9,6 +9,9 @@ import { BsDot } from "react-icons/bs";
 
 function MoreInfo() {
     const { selectedMovieObject } = useMovieContext();
+    if (selectedMovieObject === null) {
+      window.location.href = 'http://localhost:3000';
+    }
     // console.log(selectedMovieObject);
 
     const baseUrl = 'https://image.tmdb.org/t/p/w500';

@@ -72,7 +72,7 @@ function Header() {
       style={{ backgroundColor: `rgb(11, 20, 22, ${backgroundOpacity})` }}
     >
       <div className='flex justify-between items-center w-full py-4 px-4 sm:px-12'>
-        <Link to='home'>
+        <Link to={window.location.pathname === '/moreInfo' ? '../' : ''}>
           <FaStream size={28} className='fill-gray-400' />
         </Link>
         <div className='flex gap-4 items-center'>
