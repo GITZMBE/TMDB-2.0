@@ -50,7 +50,7 @@ function Favorites() {
     scrollContainerRef.current.scrollLeft = scrollLeft - walk;
   };
 
-  return (
+  return Object.keys(movies).length > 0 && (
     <div className="py-4 px-4 sm:px-12">
       <h2 className="font-bold text-3xl">Favorites</h2>
       <div 
@@ -65,11 +65,9 @@ function Favorites() {
         <div 
           className="flex gap-4" 
         >
-          {Object.keys(movies).length > 0 ? (
-            movies.map(movie => (
-              <Poster key={movie.id} movie={movie} />
-            ))
-          ): null }
+          {movies.map(movie => (
+            <Poster key={movie.id} movie={movie} />
+          ))}
         </div>
       </div>      
     </div>

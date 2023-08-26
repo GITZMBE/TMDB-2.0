@@ -34,16 +34,15 @@ function Poster({ movie }) {
 
   return (
     <div className="relative">
-      <Link to='moreInfo' onClick={handleClick}>
+      <Link to={window.location.pathname === '/moreInfo' ? '' : 'moreInfo'} onClick={handleClick}>
         <div style={bgStyle} className="group relative w-[125px] sm:w-[150px] aspect-poster background-center rounded overflow-hidden transitioning hover:scale-105">
           <div className="flex justify-center items-center w-full h-full group-hover:backdrop-brightness-50">
             <p className="text-center px-2 hidden group-hover:block text-lg text-white font-bold">{title}</p>
           </div>
         </div>
       </Link>
-      <button className="w-full bg-black" onClick={() => addToFavorites(movie)}>+</button>
+      <button className="w-full bg-black text-white" onClick={() => addToFavorites(movie)}>+</button>
     </div>
-
   );
 }
 

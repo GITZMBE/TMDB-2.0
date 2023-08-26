@@ -22,9 +22,18 @@ module.exports = {
             opacity: 1,
           },
         },
+        "fade-out": {
+          from: { 
+            opacity: 1,
+          },
+          to: { 
+            opacity: "0",
+          },
+        }
       },
       animation: {
         "fade-in": 'fade-in 1s ease-in-out forwards',
+        "fade-out": 'fade-out 1s ease-in-out forwards',
       }
     },
   },

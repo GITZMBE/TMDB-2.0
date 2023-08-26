@@ -51,7 +51,7 @@ function MoreInfo() {
         <div id="moreInfo" className="pt-[60px]">
             <div className="w-full pb-4 px-12 bg-quaternary text-white space-y-4">
                 <Banner style={bgStyle} topMovie={selectedMovieObject}>
-                    <Trailer embededUrl={embededUrl} className='hidden' />
+                    <Trailer embededUrl={embededUrl} videoKey={videoInfo.key} className='hidden' />
                 </Banner>
                 <h1 className="text-3xl font-bold">{title}</h1>
                 <div className="pb-4">

@@ -20,11 +20,11 @@ function Movies() {
   const embededUrl = `${embededBaseUrl + videoInfo.key}?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1`;
 
   return (
-    <div id='movies' className='flex flex-col pb-[60px] bg-quaternary min-h-screen text-white'>
+    <div id='movies' className='flex flex-col pb-[60px] bg-quaternary min-h-screen'>
       <Banner topMovie={bannerObject}>
-        <Trailer embededUrl={embededUrl} className='hidden' />
+        <Trailer embededUrl={embededUrl} videoKey={videoInfo.key} className='hidden' />
       </Banner>
-      <main className="w-full">
+      <main className="w-full text-white">
         <Favorites />
         <TopRated />
         <Popular />
