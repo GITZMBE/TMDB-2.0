@@ -15,6 +15,10 @@ function Poster({ movie }) {
   const { setSelectedMovieObject } = useMovieContext();
   const handleClick = () => {
     setSelectedMovieObject(movieObject);
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
   }
 
   const addToFavorites = () => {

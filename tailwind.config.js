@@ -32,8 +32,8 @@ module.exports = {
         }
       },
       animation: {
-        "fade-in": 'fade-in 1s ease-in-out forwards',
-        "fade-out": 'fade-out 1s ease-in-out forwards',
+        "fade-in": 'fade-in 1s ease-in-out forwards 3s',
+        "fade-out": 'fade-out 1s ease-in-out forwards 3s',
       }
     },
   },

@@ -37,44 +37,41 @@ function MoreInfo() {
     const popularityStyle = {
         width: `${popularityPercent}%`,
     }
-    // const baseVideoUrl = 'https://www.youtube.com/watch?v=';
-    const embededBaseUrl = 'https://www.youtube.com/embed/';
     const [videoInfo, setVideoInfo] = useState({});
     useEffect(() => {
       fetchVideoKey(selectedMovieObject.id, setVideoInfo);
     }, [selectedMovieObject, setVideoInfo])
-    // console.log('id:', videoInfo.id,'\n key: ', videoInfo.key)
-
-    const embededUrl = `${embededBaseUrl + videoInfo.key}?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1`;
 
     return (
-        <div id="moreInfo" className="pt-[60px]">
-            <div className="w-full pb-4 px-12 bg-quaternary text-white space-y-4">
+        <div id="moreInfo">
+            <div className="w-full pb-4 bg-quaternary text-white space-y-4">
                 <Banner style={bgStyle} topMovie={selectedMovieObject}>
-                    <Trailer embededUrl={embededUrl} videoKey={videoInfo.key} className='hidden' />
+                    <Trailer videoKey={videoInfo.key} className='hidden' />
                 </Banner>
-                <h1 className="text-3xl font-bold">{title}</h1>
-                <div className="pb-4">
-                    <h2 className="text-xl font-bold">Description</h2>
-                    <p>{description}</p>                    
+                <div className="px-12 space-y-4">
+                    <h1 className="text-3xl font-bold">{title}</h1>
+                    <div className="pb-4">
+                        <h2 className="text-xl font-bold">Description</h2>
+                        <p>{description}</p>                    
+                    </div>
+                    <div className="pb-4">
+                        <h2 className="text-xl font-bold">Release Date</h2>
+                        <p>{releaseDate}</p>                    
+                    </div>
+                    <div className="flex items-center gap-4">
+                        <h2 className="text-xl font-bold">Votes: </h2>
+                        <div className="space-y-2">
+                            <AiOutlineArrowUp className="fill-green-500 hover:fill-green-800 cursor-pointer" onClick={increaseVotes} />
+                            <p className="selection:bg-transparent">{voteChange}</p>
+                            <AiOutlineArrowDown className="fill-red-500 hover:fill-red-800 cursor-pointer" onClick={decreaseVotes} />
+                        </div>                    
+                    </div>
+                    <div className="relative flex w-full h-12 border-white border-2">
+                        <div style={popularityStyle} className="bg-green-500 h-full"></div>
+                        <p className="absolute w-full text-center leading-[48px] tracking-[16px]">Popularity {popularityPercent}%</p>
+                    </div>
+                    <Related id={selectedMovieObject.id} />                    
                 </div>
-                <div className="pb-4">
-                    <h2 className="text-xl font-bold">Release Date</h2>
-                    <p>{releaseDate}</p>                    
-                </div>
-                <div className="flex items-center gap-4">
-                    <h2 className="text-xl font-bold">Votes: </h2>
-                    <div className="space-y-2">
-                        <AiOutlineArrowUp className="fill-green-500 hover:fill-green-800 cursor-pointer" onClick={increaseVotes} />
-                        <p className="selection:bg-transparent">{voteChange}</p>
-                        <AiOutlineArrowDown className="fill-red-500 hover:fill-red-800 cursor-pointer" onClick={decreaseVotes} />
-                    </div>                    
-                </div>
-                <div className="relative flex w-full h-12 border-white border-2">
-                    <div style={popularityStyle} className="bg-green-500 h-full"></div>
-                    <p className="absolute w-full text-center leading-[48px] tracking-[16px]">Popularity {popularityPercent}%</p>
-                </div>
-                <Related id={selectedMovieObject.id} />
             </div>
         </div>
     )

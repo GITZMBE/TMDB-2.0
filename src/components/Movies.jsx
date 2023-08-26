@@ -16,13 +16,10 @@ function Movies() {
     bannerObject ? fetchVideoKey(bannerObject.id, setVideoInfo) : setVideoInfo({});
   }, [setBannerObject, bannerObject, setVideoInfo]);
 
-  const embededBaseUrl = 'https://www.youtube.com/embed/';
-  const embededUrl = `${embededBaseUrl + videoInfo.key}?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1`;
-
   return (
     <div id='movies' className='flex flex-col pb-[60px] bg-quaternary min-h-screen'>
       <Banner topMovie={bannerObject}>
-        <Trailer embededUrl={embededUrl} videoKey={videoInfo.key} className='hidden' />
+        <Trailer videoKey={videoInfo.key} className='hidden' />
       </Banner>
       <main className="w-full text-white">
         <Favorites />

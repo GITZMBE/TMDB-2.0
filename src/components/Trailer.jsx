@@ -1,16 +1,13 @@
 import React, { useState } from "react";
 import YouTube from 'react-youtube';
 
-export function Trailer({ embededUrl, videoKey }) {
+export function Trailer({ videoKey }) {
   const [videoStyle, setVideoStyle] = useState('');
   const handleEnd = () => {
     setVideoStyle('animate-fade-out');
   };
   const handlePlay = () => {
-    setTimeout(() => {
-        setVideoStyle('animate-fade-in');
-    }, 3000)
-  
+    setVideoStyle('animate-fade-in');
   };
 
   const opts={
