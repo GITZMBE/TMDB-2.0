@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AiFillPlayCircle } from 'react-icons/ai';
+import { BsDot } from 'react-icons/bs';
 import { Link } from "react-router-dom";
 import { useMovieContext } from "./MovieContext";
+import { fetchGenres } from "../utils/fetch";
 
 function Banner({ topMovie, children }) {
+  const [genresList, setGenresList] = useState([]);
+  useEffect(() => {
+    fetchGenres(setGenresList);
+  }, [])
+
   const baseUrl = 'https://image.tmdb.org/t/p/w500';
   const url = topMovie.backdrop_path;
   const bannerStyle = {
@@ -14,7 +21,7 @@ function Banner({ topMovie, children }) {
   rating = rating.toString().substring(0, 2);
   const releaseDate = topMovie.release_date;
   const synopsis = topMovie.overview;
-
+  const genreIds = topMovie.genre_ids || [];
   const { setSelectedMovieObject } = useMovieContext();
   const handleClick = () => {
     setSelectedMovieObject(topMovie);
@@ -35,11 +42,17 @@ function Banner({ topMovie, children }) {
               <span className="px-1 sm:px-2 py-[2px] sm:py-1 text-sm sm:text-base rounded bg-gray-800">HD</span>
               <span className="px-1 sm:px-2 py-[2px] sm:py-1 text-sm sm:text-base rounded bg-gray-800">{releaseDate}</span>
             </p>
-            <p className="max-h-16 sm:max-h-none overflow-y-hidden text-sm sm:text-base">{synopsis}</p>          
+            <p className="max-h-16 sm:max-h-none overflow-y-hidden text-sm sm:text-base">{synopsis}</p>
+            <p className="flex gap-2">
+              {Object.keys(genreIds).length > 0 ? genreIds.map((genreId, index) => (
+                genresList.map(genreItem => (
+                  genreId === genreItem.id ? (<React.Fragment key={index}><span>{genreItem.name}</span> {index !== genreIds.length - 1 && <BsDot size={22} />}</React.Fragment>) : null
+                ))
+              )) : null }
+            </p>
           </div>
         </div>      
       </Link>
-      
     </div>
   );
 }

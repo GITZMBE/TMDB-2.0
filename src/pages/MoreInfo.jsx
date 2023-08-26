@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useMovieContext } from "../components/MovieContext";
 import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai';
-import { fetchVideoKey } from '../utils/fetch';
+import { fetchGenres, fetchVideoKey } from '../utils/fetch';
 import Trailer from "../components/Trailer";
 import Banner from "../components/Banner";
 import Related from "../components/Related";
+import { BsDot } from "react-icons/bs";
 
 function MoreInfo() {
     const { selectedMovieObject } = useMovieContext();
@@ -15,6 +16,7 @@ function MoreInfo() {
     const description = selectedMovieObject.overview;
     const releaseDate = selectedMovieObject.release_date;
     const votes = selectedMovieObject.vote_count;
+    const genreIds = selectedMovieObject.genre_ids || [];
     const url = selectedMovieObject.backdrop_path;
     const bgStyle = {
       backgroundImage: `url('${baseUrl + url}')`,
@@ -42,6 +44,11 @@ function MoreInfo() {
       fetchVideoKey(selectedMovieObject.id, setVideoInfo);
     }, [selectedMovieObject, setVideoInfo])
 
+    const [genresList, setGenresList] = useState([]);
+    useEffect(() => {
+      fetchGenres(setGenresList);
+    }, [])
+
     return (
         <div id="moreInfo">
             <div className="w-full pb-4 bg-quaternary text-white space-y-4">
@@ -50,6 +57,16 @@ function MoreInfo() {
                 </Banner>
                 <div className="px-12 space-y-4">
                     <h1 className="text-3xl font-bold">{title}</h1>
+                    <div>
+                        <h2 className="text-xl font-bold">Genres</h2>
+                        <p className="flex gap-2">
+                            {Object.keys(genreIds).length > 0 ? genreIds.map((genreId, index) => (
+                                genresList.map(genreItem => (
+                                genreId === genreItem.id ? (<React.Fragment key={index}><span>{genreItem.name}</span> {index !== genreIds.length - 1 && <BsDot size={22} />}</React.Fragment>) : null
+                                ))
+                            )) : null }
+                        </p>                        
+                    </div>
                     <div className="pb-4">
                         <h2 className="text-xl font-bold">Description</h2>
                         <p>{description}</p>                    

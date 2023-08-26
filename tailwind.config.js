@@ -29,11 +29,37 @@ module.exports = {
           to: { 
             opacity: "0",
           },
-        }
+        },
+        'show-details': {
+          from: { 
+            width: '0',
+            padding: '0',
+          },
+          to: { 
+            width: '166px',
+            paddingLeft: '16px',
+            paddingTop: '8px',
+            paddingBottom: '8px',
+          },
+        },
+        'hide-details': {
+          from: { 
+            width: '166px',
+            paddingLeft: '16px',
+            paddingTop: '8px',
+            paddingBottom: '8px',
+          },
+          to: { 
+            width: '0',
+            padding: '0',
+          },
+        },
       },
       animation: {
         "fade-in": 'fade-in 1s ease-in-out forwards 3s',
         "fade-out": 'fade-out 1s ease-in-out forwards 3s',
+        'show-details': 'show-details 100ms ease-in-out forwards 300ms',
+        'hide-details': 'hide-details ease-in-out forwards',
       }
     },
   },

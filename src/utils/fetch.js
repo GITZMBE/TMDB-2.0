@@ -135,3 +135,18 @@ export const fetchAddFavorites = async ({ object, callback}) => {
   const movies = results.results;
   callback(movies);
 }
+
+export const fetchGenres = async (callback) => {
+  const url = 'https://api.themoviedb.org/3/genre/movie/list?language=en';
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjY2RhNDcyMTdmZDZjMjBhNDg5NDE2MzQ0Mzc2OGM1NCIsInN1YiI6IjY0ZGU0Y2JlNWFiODFhMDExYzJkZmY3YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vt5XySh4REc7XSFZD_Hw4g0oW3r9O0VKnmPt1W-J990'
+    }
+  };
+  const responce = await fetch(url, options);
+  const results = await responce.json();
+  const genres = results.genres;
+  callback(genres);
+}
