@@ -9,7 +9,7 @@ import { fetchGenres } from "../utils/fetch";
 // import { fetchAddFavorites } from "../utils/fetch";
 
 function Poster({ movie }) {
-  const baseUrl = "https://image.tmdb.org/t/p/w500";
+  const baseUrl = "https://image.tmdb.org/t/p/w780";
   const [movieObject, setMovieObject] = useState({});
   const [favorites, setFavorites] = useState([]);
   useEffect(() => {

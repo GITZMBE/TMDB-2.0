@@ -32,6 +32,10 @@
   .background-center {
     @apply bg-center bg-cover;
   }
+
+  .image-center {
+    @apply object-center object-cover;
+  }
 }
 
 @layer utilities {

@@ -6,6 +6,7 @@ import Trailer from "../components/Trailer";
 import Banner from "../components/Banner";
 import Related from "../components/Related";
 import { BsDot } from "react-icons/bs";
+import Credits from "../components/Credits";
 
 function MoreInfo() {
     const { selectedMovieObject } = useMovieContext();
@@ -14,7 +15,7 @@ function MoreInfo() {
     }
     // console.log(selectedMovieObject);
 
-    const baseUrl = 'https://image.tmdb.org/t/p/w500';
+    const baseUrl = 'https://image.tmdb.org/t/p/w780';
     const title = selectedMovieObject.title;
     const description = selectedMovieObject.overview;
     const releaseDate = selectedMovieObject.release_date;
@@ -90,6 +91,7 @@ function MoreInfo() {
                         <div style={popularityStyle} className="bg-green-500 h-full"></div>
                         <p className="absolute w-full text-center leading-[48px] tracking-[16px]">Popularity {popularityPercent}%</p>
                     </div>
+                    <Credits id={selectedMovieObject.id} />
                     <Related id={selectedMovieObject.id} />                    
                 </div>
             </div>
