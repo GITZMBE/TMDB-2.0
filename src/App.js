@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Layer from './pages/Layer';
 import MoreInfo from './pages/MoreInfo';
-import { MovieProvider } from './components/MovieContext';
+import { MovieProvider } from './utils/MovieContext';
 
 function App() {
   return (

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { fetchMovieCredits } from "../utils/fetch";
+import { fetchMovieCredits } from "../api/fetch";
 
 function Credits({ id }) {
   const [cast, setCast] = useState([]);
@@ -55,7 +55,7 @@ function Credits({ id }) {
         onMouseLeave={handleMouseLeave}
         onMouseMove={handleMouseMove}
       >
-        <div className='flex flex-nowrap lg:flex-wrap lg:justify-between gap-4 overflow-auto hide-scrollbar'>
+        <div className='flex flex-nowrap lg:flex-wrap lg:justify-between gap-4 max-h-[912px] overflow-y-hidden overflow-x-auto hide-scrollbar'>
           {Object.keys(cast).length > 0
             ? cast.map((person, index) => (
                 <div
@@ -77,7 +77,7 @@ function Credits({ id }) {
                   </p>
                 </div>
               ))
-            : null}          
+            : null}
         </div>
       </div>
     </div>
