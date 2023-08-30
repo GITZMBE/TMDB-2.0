@@ -8,6 +8,7 @@ import { BsDot } from "react-icons/bs";
 import Credits from "../components/Credits";
 import { useRecoilState } from "recoil";
 import { selectedMovieState } from "../recoil/recoil";
+import Reviews from "../components/Reviews";
 
 function MoreInfo() {
   const [selectedMovie] = useRecoilState(selectedMovieState);
@@ -46,7 +47,7 @@ function MoreInfo() {
   const [videoInfo, setVideoInfo] = useState({});
   useEffect(() => {
     fetchVideoKey(selectedMovie.id, setVideoInfo);
-  }, [selectedMovie, setVideoInfo]);
+  }, [selectedMovie]);
 
   const [genresList, setGenresList] = useState([]);
   useEffect(() => {
@@ -55,9 +56,9 @@ function MoreInfo() {
 
   return (
     <div id='moreInfo'>
-      <div className='w-full pb-4 bg-quaternary text-white space-y-4'>
+      <div className='w-full pb-4 bg-primary text-white space-y-4'>
         <Banner style={bgStyle} topMovie={selectedMovie}>
-          <Trailer videoKey={videoInfo.key} className='hidden' />
+          <Trailer videoKey={videoInfo && videoInfo.key} className='hidden' />
         </Banner>
         <div className='px-12 space-y-4'>
           <h1 className='text-3xl font-bold'>{title}</h1>
@@ -107,6 +108,7 @@ function MoreInfo() {
             </p>
           </div>
           <Credits id={selectedMovie.id} />
+          <Reviews id={selectedMovie.id} />
           <Related id={selectedMovie.id} />
         </div>
       </div>

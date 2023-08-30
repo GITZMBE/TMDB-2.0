@@ -5,7 +5,7 @@ function Footer() {
   return (
     <footer
       id='footer'
-      className="space-y-8 bg-tertiary"
+      className="space-y-8 bg-secondary"
     >
       <div className='grid justify-start sm:justify-between sm:grid-cols-2 md:grid-cols-4 gap-4 py-4 px-12 text-gray-400'>
         <div id='basics'>

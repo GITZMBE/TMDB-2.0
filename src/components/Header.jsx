@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { FaStream } from "react-icons/fa";
 import { BiSearch } from "react-icons/bi";
 import { AiOutlineMenu } from "react-icons/ai";
-import { fetchQuery } from "../utils/fetch";
+import { fetchQuery } from "../api/fetch";
 import Poster from "./Poster";
 
 function Header() {
@@ -59,7 +59,7 @@ function Header() {
     setOpenSearch(!openSearch);
   };
 
-  window.addEventListener("scroll", (e) => {
+  window.addEventListener("scroll", () => {
     const header = document.getElementById("header");
     const calculatedOpacity = Math.min(window.scrollY / header.clientHeight, 1);
     setBackgroundOpacity(calculatedOpacity);
@@ -68,11 +68,11 @@ function Header() {
   return (
     <header
       id='header'
-      className='fixed z-10 flex flex-col justify-start w-full max-h-[60px] overflow-y-hidden bg-quaternary'
-      style={{ backgroundColor: `rgb(11, 20, 22, ${backgroundOpacity})` }}
+      className='fixed z-10 flex flex-col justify-start w-full max-h-[60px] overflow-y-hidden bg-quaternary]'
+      style={{ backgroundColor: `rgb(13, 28, 40, ${backgroundOpacity})` }}
     >
       <div className='flex justify-between items-center w-full py-4 px-4 sm:px-12'>
-        <Link to={window.location.pathname === '/moreInfo' ? '../' : ''}>
+        <Link to={window.location.pathname === "/moreInfo" ? "../" : ""}>
           <FaStream size={28} className='fill-gray-400' />
         </Link>
         <div className='flex gap-4 items-center'>

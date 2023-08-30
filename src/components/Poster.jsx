@@ -31,7 +31,7 @@ function Poster({ movie }) {
   const [selectedMovie, setSelectedMovie] = useRecoilState(selectedMovieState);
   const handleClick = () => {
     setSelectedMovie(movie);
-    console.log(selectedMovie)
+    console.log(selectedMovie);
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -104,7 +104,7 @@ function Poster({ movie }) {
       </Link>
       <div
         id='details'
-        className={`absolute left-[150px] top-0 z-10 space-y-2 text-white bg-quaternary hover:pl-4 hover:py-2 h-full w-0 hover:w-[150px] aspect-poster overflow-hidden transitioning ${detailsStyle}`}
+        className={`absolute left-[150px] top-0 z-10 space-y-2 text-white bg-primary hover:pl-4 hover:py-2 h-full w-0 hover:w-[150px] aspect-poster overflow-hidden transitioning ${detailsStyle}`}
         onMouseOver={showDetails}
         onMouseLeave={hideDetails}
       >

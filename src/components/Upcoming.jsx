@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { fetchUpcoming } from "../utils/fetch";
+import { fetchUpcoming } from "../api/fetch";
 import Poster from "./Poster";
 
 function Upcoming() {

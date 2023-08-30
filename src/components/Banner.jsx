@@ -25,8 +25,8 @@ function Banner({ topMovie, children }) {
   const genreIds = topMovie.genre_ids || [];
   const [selectedMovie, setSelectedMovie] = useRecoilState(selectedMovieState);
   const handleClick = () => {
-    setSelectedMovie(topMovie)
-    console.log(selectedMovie)
+    setSelectedMovie(topMovie);
+    console.log(selectedMovie);
   };
 
   return (

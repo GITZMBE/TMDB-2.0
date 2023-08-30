@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { fetchPopular } from "../utils/fetch";
+import { fetchPopular } from "../api/fetch";
 import Poster from "./Poster";
 
 function Popular() {

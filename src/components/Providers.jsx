@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { fetchProviders } from "../utils/fetch";
+import { fetchProviders } from "../api/fetch";
 
 function Providers() {
   const baseUrl = "https://image.tmdb.org/t/p/w500";

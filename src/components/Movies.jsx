@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Trailer } from './Trailer';
 import Banner from "./Banner";
 import TopRated from "./TopRated";
-import { fetchTopMovie, fetchVideoKey } from "../utils/fetch";
+import { fetchTopMovie, fetchVideoKey } from "../api/fetch";
 import Popular from "./Popular";
 import Upcoming from "./Upcoming";
 import Favorites from "./Favorites";
@@ -17,7 +17,7 @@ function Movies() {
   }, [setBannerObject, bannerObject, setVideoInfo]);
 
   return (
-    <div id='movies' className='flex flex-col pb-[60px] bg-quaternary min-h-screen'>
+    <div id='movies' className='flex flex-col pb-[60px] bg-primary min-h-screen'>
       <Banner topMovie={bannerObject}>
         <Trailer videoKey={videoInfo.key} className='hidden' />
       </Banner>

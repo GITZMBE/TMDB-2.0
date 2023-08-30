@@ -5,10 +5,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#418EC6",
-        secondary: "#7B2049",
-        tertiary: "#1E2762",
-        quaternary: "#0B1416",
+        primary: "#0D1C28",
+        secondary: "#173248",
+        tertiary: "#F5F9FC",
+        quaternary: "#418EC6",
       },
       aspectRatio: {
         poster: "2/3",
