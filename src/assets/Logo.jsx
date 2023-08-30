@@ -3,7 +3,7 @@ import { FaStream } from "react-icons/fa";
 
 function Logo({ display }) {
   return (
-    <div className={`${display === 'flex' ? 'flex items-center gap-4' : null} w-fit text-center uppercase text-gray-500 hover:text-tertiary`}>
+    <div className={`${display === 'flex' ? 'flex items-center gap-4 hover:text-tertiary' : null} w-fit text-center uppercase text-gray-500`}>
       <FaStream size={38} className='w-full' />
       <div className="w-fit">
         <p className='flex justify-between text-xl'><span>T</span><span>M</span><span>D</span><span>B</span></p>
