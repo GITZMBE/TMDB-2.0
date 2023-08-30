@@ -46,7 +46,7 @@ function Banner({ topMovie, children }) {
               <h1 className='text-3xl sm:text-5xl font-bold'>{title}</h1>
               <AiFillPlayCircle
                 size={36}
-                className='fill-primary min-w-[36px]'
+                className='fill-secondary min-w-[36px]'
               />
             </div>
             <p className='space-x-2 font-bold text-white text-sm uppercase'>

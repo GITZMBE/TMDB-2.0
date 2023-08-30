@@ -5,6 +5,9 @@ import { BiSearch } from "react-icons/bi";
 import { AiOutlineMenu } from "react-icons/ai";
 import { fetchQuery } from "../api/fetch";
 import Poster from "./Poster";
+import Menu from "./Menu";
+import { useRecoilState } from "recoil";
+import { openMenuState } from "../recoil/recoil";
 
 function Header() {
   const [openSearch, setOpenSearch] = useState(false);
@@ -59,6 +62,11 @@ function Header() {
     setOpenSearch(!openSearch);
   };
 
+  const [menuOpen, setMenuOpen] = useRecoilState(openMenuState);
+  const openMenu = () => {
+    setMenuOpen(!menuOpen);
+  }
+
   window.addEventListener("scroll", () => {
     const header = document.getElementById("header");
     const calculatedOpacity = Math.min(window.scrollY / header.clientHeight, 1);
@@ -68,10 +76,10 @@ function Header() {
   return (
     <header
       id='header'
-      className='fixed z-10 flex flex-col justify-start w-full max-h-[60px] overflow-y-hidden bg-quaternary]'
+      className='fixed z-30 flex flex-col justify-start w-full max-h-[60px] overflow-y-hidden bg-quaternary]'
       style={{ backgroundColor: `rgb(13, 28, 40, ${backgroundOpacity})` }}
     >
-      <div className='flex justify-between items-center w-full py-4 px-4 sm:px-12'>
+      <div className='flex justify-between items-center w-full py-4 px-4 sm:px-12 z-20'>
         <Link to={window.location.pathname === "/moreInfo" ? "../" : ""}>
           <FaStream size={28} className='fill-gray-400' />
         </Link>
@@ -95,14 +103,15 @@ function Header() {
           </div>
           <AiOutlineMenu
             size={22}
-            className='fill-gray-400 hover:fill-white cursor hidden sm:block'
+            className='fill-gray-400 hover:fill-white cursor hidden sm:block cursor-pointer'
+            onClick={openMenu}
           />
         </div>
       </div>
-      <div className='flex justify-center w-full'>
+      <div className='fixed top-0 flex justify-center w-full'>
         <div
           id='movieSection'
-          className='flex flex-wrap items-start gap-4 px-12 w-full max-w-[1408px] max-h-full overflow-y-auto hide-scrollbar'
+          className='flex flex-wrap items-start gap-4 pt-16 px-12 w-full max-w-[1408px] max-h-full overflow-y-auto hide-scrollbar'
         >
           {Object.keys(searchObject).length > 0
             ? searchObject.map((movie) => (
@@ -117,6 +126,7 @@ function Header() {
             : null}
         </div>
       </div>
+      <Menu />
     </header>
   );
 }

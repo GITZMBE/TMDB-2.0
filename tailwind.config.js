@@ -4,6 +4,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx}"],
   theme: {
     extend: {
+      padding: {
+        headerHeight: '60px',
+      },
       colors: {
         primary: "#0D1C28",
         secondary: "#173248",
@@ -54,12 +57,34 @@ module.exports = {
             padding: '0',
           },
         },
+        'show-menu': {
+          from: {
+            width: 0,
+          },
+          to: {
+            width: '100vw',
+            paddingLeft: '3rem',
+            paddingRight: '3rem',
+          }
+        },
+        'hide-menu': {
+          from: {
+            width: '100vw',
+          },
+          to: {
+            width: 0,
+            paddingLeft: 0,
+            paddingRight: 0,
+          }
+        }
       },
       animation: {
         "fade-in": 'fade-in 1s ease-in-out forwards 3s',
         "fade-out": 'fade-out 1s ease-in-out forwards 3s',
         'show-details': 'show-details 100ms ease-in-out forwards 300ms',
         'hide-details': 'hide-details ease-in-out forwards',
+        'show-menu': 'show-menu ease-in-out forwards 300ms',
+        'hide-menu': 'hide-menu ease-in-out forwards 300ms',
       }
     },
   },

@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Layer from './pages/Layer';
 import MoreInfo from './pages/MoreInfo';
 import { MovieProvider } from './utils/MovieContext';
+import Filter from './pages/Filter';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
               <Route index element={<Home />} />
               <Route path='home' element={<Home />} />
               <Route path='moreInfo' element={<MoreInfo />} />
+              <Route path='filter' element={<Filter />} />
             </Route>
           </Routes>        
         </MovieProvider>
