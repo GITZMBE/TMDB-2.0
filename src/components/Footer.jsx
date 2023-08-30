@@ -1,17 +1,16 @@
 import React from "react";
 import Providers from "./Providers";
+import { AiFillFolderOpen } from "react-icons/ai";
+import Logo from "../assets/Logo";
 
 function Footer() {
   return (
-    <footer
-      id='footer'
-      className="space-y-8 bg-secondary"
-    >
+    <footer id='footer' className='space-y-8 bg-secondary'>
       <div className='grid justify-start sm:justify-between sm:grid-cols-2 md:grid-cols-4 gap-4 py-4 px-12 text-gray-400'>
-        <div id='basics'>
-          <ul>
+        <div id='about'>
+          <ul className='space-y-2'>
             <li>
-              <h3 className="uppercase text-lg font-bold">The Basics</h3>
+              <h3 className='uppercase text-lg font-bold'>About Us</h3>
             </li>
             <li>
               <a href='./#' className='hover:text-white'>
@@ -25,7 +24,7 @@ function Footer() {
             </li>
             <li>
               <a href='./#' className='hover:text-white'>
-                Support Forums
+                Terms of service
               </a>
             </li>
             <li>
@@ -35,83 +34,66 @@ function Footer() {
             </li>
             <li>
               <a href='./#' className='hover:text-white'>
-                System Status
+                Movies
+              </a>
+            </li>
+            <li>
+              <a href='./#' className='hover:text-white'>
+                TV Series
+              </a>
+            </li>
+            <li>
+              <a href='./#' className='hover:text-white'>
+                Top IMDb
               </a>
             </li>
           </ul>
         </div>
-        <div id='involved'>
-          <ul>
+        <div id='genres'>
+          <ul className='space-y-2'>
             <li>
-              <h3 className="uppercase text-lg font-bold">Get Involved</h3>
+              <h3 className='uppercase text-lg font-bold'>Genres</h3>
             </li>
             <li>
-              <a href='./#' className='hover:text-white'>
-                Contribution Bible
+              <a href='./#' className='flex gap-2 hover:text-white'>
+                <AiFillFolderOpen size={22} /> Action
               </a>
             </li>
             <li>
-              <a href='./#' className='hover:text-white'>
-                Add New Movie
+              <a href='./#' className='flex gap-2 hover:text-white'>
+                <AiFillFolderOpen size={22} /> Crime
               </a>
             </li>
             <li>
-              <a href='./#' className='hover:text-white'>
-                Add New TV Show
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id='community'>
-          <ul>
-            <li><h3 className="uppercase text-lg font-bold">Community</h3></li>
-            <li>
-              <a href='./#' className='hover:text-white'>
-                Guidelines
+              <a href='./#' className='flex gap-2 hover:text-white'>
+                <AiFillFolderOpen size={22} /> Drama
               </a>
             </li>
             <li>
-              <a href='./#' className='hover:text-white'>
-                Discussions
+              <a href='./#' className='flex gap-2 hover:text-white'>
+                <AiFillFolderOpen size={22} /> Fantasy
               </a>
             </li>
             <li>
-              <a href='./#' className='hover:text-white'>
-                Leaderboard
+              <a href='./#' className='flex gap-2 hover:text-white'>
+                <AiFillFolderOpen size={22} /> Horror
               </a>
             </li>
             <li>
-              <a href='./#' className='hover:text-white'>
-                Twitter
+              <a href='./#' className='flex gap-2 hover:text-white'>
+                <AiFillFolderOpen size={22} /> Mystery
               </a>
             </li>
           </ul>
         </div>
+        <div></div>
         <div id='legal'>
           <ul>
-            <li><h3 className="uppercase text-lg font-bold">Legal</h3></li>
-            <li>
-              <a href='./#' className='hover:text-white'>
-                Terms of Use
-              </a>
-            </li>
-            <li>
-              <a href='./#' className='hover:text-white'>
-                API Terms of Use
-              </a>
-            </li>
-            <li>
-              <a href='./#' className='hover:text-white'>
-                Privacy Policy
-              </a>
-            </li>
-            <li>
-              <a href='./#' className='hover:text-white'>
-                DMCA Takedown Request
-              </a>
+            <li className='flex justify-start md:justify-center lg:justify-end'>
+              <Logo />
             </li>
           </ul>
-        </div>        
+        </div>
       </div>
       <Providers />
     </footer>

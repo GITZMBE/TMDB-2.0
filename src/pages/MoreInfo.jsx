@@ -7,7 +7,7 @@ import Related from "../components/Related";
 import { BsDot } from "react-icons/bs";
 import Credits from "../components/Credits";
 import { useRecoilState } from "recoil";
-import { selectedMovieState } from "../recoil/recoil";
+import { selectedMovieState } from "../contexts/recoil";
 import Reviews from "../components/Reviews";
 
 function MoreInfo() {

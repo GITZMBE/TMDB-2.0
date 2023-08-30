@@ -4,7 +4,7 @@ import { BsDot } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { fetchGenres } from "../api/fetch";
 import { useRecoilState } from "recoil";
-import { selectedMovieState } from "../recoil/recoil";
+import { selectedMovieState } from "../contexts/recoil";
 
 function Banner({ topMovie, children }) {
   const [genresList, setGenresList] = useState([]);

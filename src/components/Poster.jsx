@@ -6,7 +6,7 @@ import { LiaPlusCircleSolid, LiaTimesCircle } from "react-icons/lia";
 import { BsDot } from "react-icons/bs";
 import { fetchGenres } from "../api/fetch";
 import { useRecoilState } from "recoil";
-import { selectedMovieState } from "../recoil/recoil";
+import { selectedMovieState } from "../contexts/recoil";
 // import { fetchAddFavorites } from "../utils/fetch";
 
 function Poster({ movie }) {

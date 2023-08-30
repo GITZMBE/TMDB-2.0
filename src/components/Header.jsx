@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FaStream } from "react-icons/fa";
 import { BiSearch } from "react-icons/bi";
 import { AiOutlineMenu } from "react-icons/ai";
 import { fetchQuery } from "../api/fetch";
 import Poster from "./Poster";
 import Menu from "./Menu";
 import { useRecoilState } from "recoil";
-import { openMenuState } from "../recoil/recoil";
+import { openMenuState } from "../contexts/recoil";
+import Logo from "../assets/Logo";
 
 function Header() {
   const [openSearch, setOpenSearch] = useState(false);
@@ -65,7 +65,7 @@ function Header() {
   const [menuOpen, setMenuOpen] = useRecoilState(openMenuState);
   const openMenu = () => {
     setMenuOpen(!menuOpen);
-  }
+  };
 
   window.addEventListener("scroll", () => {
     const header = document.getElementById("header");
@@ -79,9 +79,9 @@ function Header() {
       className='fixed z-30 flex flex-col justify-start w-full max-h-[60px] overflow-y-hidden bg-quaternary]'
       style={{ backgroundColor: `rgb(13, 28, 40, ${backgroundOpacity})` }}
     >
-      <div className='flex justify-between items-center w-full py-4 px-4 sm:px-12 z-20'>
+      <div className='flex justify-between items-center w-full h-headerHeight px-4 sm:px-12 z-20'>
         <Link to={window.location.pathname === "/moreInfo" ? "../" : ""}>
-          <FaStream size={28} className='fill-gray-400' />
+          <Logo display='flex' />
         </Link>
         <div className='flex gap-4 items-center'>
           <div id='search-container' className='flex items-center'>

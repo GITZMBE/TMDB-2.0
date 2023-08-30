@@ -4,7 +4,7 @@ module.exports = {
   content: ["./src/**/*.{js,jsx}"],
   theme: {
     extend: {
-      padding: {
+      spacing: {
         headerHeight: '60px',
       },
       colors: {
