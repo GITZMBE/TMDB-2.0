@@ -8,8 +8,8 @@ export const fetchTopMovies = async (callback) => {
         "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjY2RhNDcyMTdmZDZjMjBhNDg5NDE2MzQ0Mzc2OGM1NCIsInN1YiI6IjY0ZGU0Y2JlNWFiODFhMDExYzJkZmY3YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vt5XySh4REc7XSFZD_Hw4g0oW3r9O0VKnmPt1W-J990",
     },
   };
-  const responce = await fetch(url, options);
-  const results = await responce.json();
+  const response = await fetch(url, options);
+  const results = await response.json();
   const movies = await results.results;
   callback(movies);
 }
@@ -24,8 +24,8 @@ export const fetchTopMovie = async (callback) => {
         "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjY2RhNDcyMTdmZDZjMjBhNDg5NDE2MzQ0Mzc2OGM1NCIsInN1YiI6IjY0ZGU0Y2JlNWFiODFhMDExYzJkZmY3YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vt5XySh4REc7XSFZD_Hw4g0oW3r9O0VKnmPt1W-J990",
     },
   };
-  const responce = await fetch(url, options);
-  const results = await responce.json();
+  const response = await fetch(url, options);
+  const results = await response.json();
   const movies = await results.results;
   const topMovie = await movies[0];
   callback(topMovie);
@@ -39,8 +39,8 @@ export const fetchVideoKey = async (id, callback) => {
       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjY2RhNDcyMTdmZDZjMjBhNDg5NDE2MzQ0Mzc2OGM1NCIsInN1YiI6IjY0ZGU0Y2JlNWFiODFhMDExYzJkZmY3YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vt5XySh4REc7XSFZD_Hw4g0oW3r9O0VKnmPt1W-J990'
     },
   };
-  const responce = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, options);
-  const results = await responce.json();
+  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, options);
+  const results = await response.json();
   callback(results.results[0]);
 }
 
@@ -52,8 +52,8 @@ export const fetchPopular = async (callback) => {
       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjY2RhNDcyMTdmZDZjMjBhNDg5NDE2MzQ0Mzc2OGM1NCIsInN1YiI6IjY0ZGU0Y2JlNWFiODFhMDExYzJkZmY3YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vt5XySh4REc7XSFZD_Hw4g0oW3r9O0VKnmPt1W-J990'
     }
   };
-  const responce = await fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options);
-  const results = await responce.json();
+  const response = await fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options);
+  const results = await response.json();
   const data = results.results;
   callback(data);
 }
@@ -69,8 +69,8 @@ export const fetchQuery = async (query, callback) => {
         "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjY2RhNDcyMTdmZDZjMjBhNDg5NDE2MzQ0Mzc2OGM1NCIsInN1YiI6IjY0ZGU0Y2JlNWFiODFhMDExYzJkZmY3YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vt5XySh4REc7XSFZD_Hw4g0oW3r9O0VKnmPt1W-J990",
     },
   };
-  const responce = await fetch(url, options);
-  const results = await responce.json();
+  const response = await fetch(url, options);
+  const results = await response.json();
   const movies = results.results;
   callback(movies);
 }
@@ -84,8 +84,8 @@ export const fetchUpcoming = async (callback) => {
       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjY2RhNDcyMTdmZDZjMjBhNDg5NDE2MzQ0Mzc2OGM1NCIsInN1YiI6IjY0ZGU0Y2JlNWFiODFhMDExYzJkZmY3YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vt5XySh4REc7XSFZD_Hw4g0oW3r9O0VKnmPt1W-J990'
     }
   };
-  const responce = await fetch(url, options);
-  const results = await responce.json();
+  const response = await fetch(url, options);
+  const results = await response.json();
   const movies = results.results;
   callback(movies);
 }
@@ -99,8 +99,8 @@ export const fetchRelated = async (id, callback) => {
       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjY2RhNDcyMTdmZDZjMjBhNDg5NDE2MzQ0Mzc2OGM1NCIsInN1YiI6IjY0ZGU0Y2JlNWFiODFhMDExYzJkZmY3YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vt5XySh4REc7XSFZD_Hw4g0oW3r9O0VKnmPt1W-J990'
     }
   };
-  const responce = await fetch(url, options);
-  const results = await responce.json();
+  const response = await fetch(url, options);
+  const results = await response.json();
   const movies = results.results;
   callback(movies);
 }
@@ -114,8 +114,8 @@ export const fetchFavorites = async (callback) => {
       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjY2RhNDcyMTdmZDZjMjBhNDg5NDE2MzQ0Mzc2OGM1NCIsInN1YiI6IjY0ZGU0Y2JlNWFiODFhMDExYzJkZmY3YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vt5XySh4REc7XSFZD_Hw4g0oW3r9O0VKnmPt1W-J990'
     }
   };
-  const responce = await fetch(url, options);
-  const results = await responce.json();
+  const response = await fetch(url, options);
+  const results = await response.json();
   const movies = results.results;
   callback(movies);
 }
@@ -130,8 +130,8 @@ export const fetchAddFavorites = async (object, callback) => {
       body: JSON.stringify(`'${object}'`)
     }
   };
-  const responce = await fetch(url, options);
-  const results = await responce.json();
+  const response = await fetch(url, options);
+  const results = await response.json();
   const movies = results.results;
   callback(movies);
 }
@@ -145,8 +145,8 @@ export const fetchGenres = async (callback) => {
       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjY2RhNDcyMTdmZDZjMjBhNDg5NDE2MzQ0Mzc2OGM1NCIsInN1YiI6IjY0ZGU0Y2JlNWFiODFhMDExYzJkZmY3YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vt5XySh4REc7XSFZD_Hw4g0oW3r9O0VKnmPt1W-J990'
     }
   };
-  const responce = await fetch(url, options);
-  const results = await responce.json();
+  const response = await fetch(url, options);
+  const results = await response.json();
   const genres = results.genres;
   callback(genres);
 }
@@ -160,8 +160,8 @@ export const fetchProviders = async (callback) => {
       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjY2RhNDcyMTdmZDZjMjBhNDg5NDE2MzQ0Mzc2OGM1NCIsInN1YiI6IjY0ZGU0Y2JlNWFiODFhMDExYzJkZmY3YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vt5XySh4REc7XSFZD_Hw4g0oW3r9O0VKnmPt1W-J990'
     }
   };
-  const responce = await fetch(url, options);
-  const results = await responce.json();
+  const response = await fetch(url, options);
+  const results = await response.json();
   const data = results.results;
   callback(data);
 }
@@ -175,8 +175,8 @@ export const fetchMovieCredits = async (id, callback) => {
       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjY2RhNDcyMTdmZDZjMjBhNDg5NDE2MzQ0Mzc2OGM1NCIsInN1YiI6IjY0ZGU0Y2JlNWFiODFhMDExYzJkZmY3YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vt5XySh4REc7XSFZD_Hw4g0oW3r9O0VKnmPt1W-J990'
     }
   };
-  const responce = await fetch(url, options);
-  const results = await responce.json();
+  const response = await fetch(url, options);
+  const results = await response.json();
   const cast = results.cast;
   callback(cast);
 }
@@ -190,8 +190,65 @@ export const fetchReviews = async (id, callback) => {
       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjY2RhNDcyMTdmZDZjMjBhNDg5NDE2MzQ0Mzc2OGM1NCIsInN1YiI6IjY0ZGU0Y2JlNWFiODFhMDExYzJkZmY3YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vt5XySh4REc7XSFZD_Hw4g0oW3r9O0VKnmPt1W-J990'
     }
   };
-  const responce = await fetch(url, options);
-  const results = await responce.json();
+  const response = await fetch(url, options);
+  const results = await response.json();
   const reviews = results.results;
   callback(reviews);
+}
+
+export const fetchFilter = async (genreId, page, translation, year, callback) => {
+  const url = `https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&page=${page}&language=${translation}&with_release_year=${year}`;
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjY2RhNDcyMTdmZDZjMjBhNDg5NDE2MzQ0Mzc2OGM1NCIsInN1YiI6IjY0ZGU0Y2JlNWFiODFhMDExYzJkZmY3YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vt5XySh4REc7XSFZD_Hw4g0oW3r9O0VKnmPt1W-J990'
+    }
+  };
+  const response = await fetch(url, options);
+  const results = await response.json();
+  const movies = results.results;
+  callback(movies)
+}
+
+export const fetchTranslations = async (callback) => {
+  const url = "https://api.themoviedb.org/3/configuration/primary_translations";
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjY2RhNDcyMTdmZDZjMjBhNDg5NDE2MzQ0Mzc2OGM1NCIsInN1YiI6IjY0ZGU0Y2JlNWFiODFhMDExYzJkZmY3YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vt5XySh4REc7XSFZD_Hw4g0oW3r9O0VKnmPt1W-J990'
+    }
+  };
+  const response = await fetch(url, options);
+  const results = await response.json();
+  callback(results);
+}
+
+export const fetchLanguages = async (callback) => {
+  const url = "https://api.themoviedb.org/3/configuration/languages";
+  const options = {
+    method : "GET",
+    headers:{
+      accept:"application/json",
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjY2RhNDcyMTdmZDZjMjBhNDg5NDE2MzQ0Mzc2OGM1NCIsInN1YiI6IjY0ZGU0Y2JlNWFiODFhMDExYzJkZmY3YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vt5XySh4REc7XSFZD_Hw4g0oW3r9O0VKnmPt1W-J990'
+    }
+  }
+  const response = await fetch(url, options);
+  const results = await response.json();
+  callback(results);
+}
+
+export const fetchCountries = async (callback) => {
+  const url = "https://api.themoviedb.org/3/configuration/countries";
+  const options = {
+    method : "GET",
+    headers:{
+      accept:"application/json",
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjY2RhNDcyMTdmZDZjMjBhNDg5NDE2MzQ0Mzc2OGM1NCIsInN1YiI6IjY0ZGU0Y2JlNWFiODFhMDExYzJkZmY3YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vt5XySh4REc7XSFZD_Hw4g0oW3r9O0VKnmPt1W-J990'
+    }
+  }
+  const response = await fetch(url, options);
+  const results = await response.json();
+  callback(results);
 }

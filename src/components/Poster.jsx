@@ -86,7 +86,7 @@ function Poster({ movie }) {
   return (
     <div className='relative flex rounded'>
       <Link
-        to={window.location.pathname === "/moreInfo" ? "" : "moreInfo"}
+        to={window.location.pathname !== "" ? "../moreInfo" : "moreInfo"}
         onClick={handleClick}
       >
         <div

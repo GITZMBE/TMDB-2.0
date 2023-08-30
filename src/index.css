@@ -40,6 +40,10 @@
 
 @layer utilities {
   .hide-scrollbar::-webkit-scrollbar {
-    display: none;
+    @apply hidden;
+  }
+  .input-number-btn-none::-webkit-inner-spin-button,
+  .input-number-btn-none::-webkit-outer-spin-button {
+    -webkit-appearance: none;
   }
 }
