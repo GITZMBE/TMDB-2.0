@@ -5,7 +5,7 @@ function MoviesContainer({ title, fetchFunction }) {
   const [movies, setMovies] = useState([]);
   useEffect(() => {
     fetchFunction(setMovies);
-  }, [fetchFunction, setMovies]);
+  }, []);
 
   const scrollContainerRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);

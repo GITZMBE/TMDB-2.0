@@ -3,10 +3,10 @@ import { fetchUpcoming } from "../api/fetch";
 import Poster from "./Poster";
 
 function Upcoming() {
-  const [movies, setMovies] = useState({});
+  const [movies, setMovies] = useState([]);
   useEffect(() => {
     fetchUpcoming(setMovies);
-  }, [movies])
+  }, [])
 
   const scrollContainerRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);

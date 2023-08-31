@@ -48,14 +48,11 @@ function Credits({ id }) {
   return (
     <div id='credits' className='w-full space-y-4'>
       <h2 className='font-bold text-3xl'>Credits</h2>
-      <div
-        rel={scrollContainerRef}
+        <div className='flex flex-nowrap lg:flex-wrap lg:justify-between gap-4 max-h-[912px] overflow-y-hidden overflow-x-auto hide-scrollbar' ref={scrollContainerRef}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseLeave}
-        onMouseMove={handleMouseMove}
-      >
-        <div className='flex flex-nowrap lg:flex-wrap lg:justify-between gap-4 max-h-[912px] overflow-y-hidden overflow-x-auto hide-scrollbar'>
+        onMouseMove={handleMouseMove}>
           {Object.keys(cast).length > 0
             ? cast.map((person, index) => (
                 <div
@@ -79,7 +76,6 @@ function Credits({ id }) {
               ))
             : null}
         </div>
-      </div>
     </div>
   );
 }
