@@ -114,8 +114,7 @@ export const fetchRelated = async (id, callback) => {
 };
 
 export const fetchFavorites = async (callback) => {
-  const url =
-    "https://api.themoviedb.org/3/account/20315792/favorite/movies?language=en-US&page=1&sort_by=created_at.asc";
+  const url = "https://api.themoviedb.org/3/account/20315792/favorite/movies?language=en-US&page=1&sort_by=created_at.asc";
   const options = {
     method: "GET",
     headers: {
@@ -212,13 +211,7 @@ export const fetchReviews = async (id, callback) => {
   callback(reviews);
 };
 
-export const fetchFilter = async (
-  genreId,
-  page,
-  translation,
-  year,
-  callback
-) => {
+export const fetchFilter = async (genreId, page, translation, year, callback) => {
   const url = `https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&page=${page}&language=${translation}&with_release_year=${year}`;
   const options = {
     method: "GET",
