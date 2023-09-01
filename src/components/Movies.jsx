@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Trailer } from './Trailer';
 import Banner from "./Banner";
 import TopRated from "./TopRated";
-import { fetchPopular, fetchTopMovie, fetchUpcoming, fetchVideoKey } from "../api/fetch";
+import { fetchTopMovie, fetchVideoKey } from "../api/fetch";
 import Popular from "./Popular";
 import Upcoming from "./Upcoming";
 import Favorites from "./Favorites";
-import MoviesContainer from "./MoviesContainer";
+// import MoviesContainer from "./MoviesContainer";
 
 function Movies() {
   const [bannerObject, setBannerObject] = useState('');
@@ -26,9 +26,9 @@ function Movies() {
         <TopRated />
         <Popular />
         <Upcoming />
-        <MoviesContainer title='Top Rated' fetchFunction={fetchTopMovie} />
+        {/* <MoviesContainer title='Top Rated' fetchFunction={fetchTopMovie} />
         <MoviesContainer title='Popular' fetchFunction={fetchPopular} />
-        <MoviesContainer title='Upcoming' fetchFunction={fetchUpcoming} />
+        <MoviesContainer title='Upcoming' fetchFunction={fetchUpcoming} /> */}
       </main>
     </div>
   );

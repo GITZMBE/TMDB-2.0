@@ -2,9 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 @layer base {
   * {
     @apply m-0 p-0 box-border;
+  }
+
+  :root {
+    --primary: "#0D1C28";
+    --secondary: "#173248";
+    --tertiary: "#F5F9FC";
+    --quaternary: "#418EC6";
   }
 
   body, html {
