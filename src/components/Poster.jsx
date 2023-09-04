@@ -104,7 +104,12 @@ function Poster({ movie }) {
             />
           </button>
         </div>
-        <h2 className='font-bold text-md'>{title}</h2>
+        <Link
+        to={window.location.pathname !== "" ? "../moreInfo" : "moreInfo"}
+        onClick={handleClick}
+        >
+          <h2 className='font-bold text-md'>{title}</h2>
+        </Link>
         <p className='flex flex-wrap gap-2 font-bold text-white text-sm uppercase'>
           <span className='px-1 sm:px-2 py-[2px] sm:py-[1px] text-xs sm:text-sm rounded bg-green-600'>
             {rating} %
