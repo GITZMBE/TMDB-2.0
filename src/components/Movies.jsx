@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Trailer } from './Trailer';
 import Banner from "./Banner";
-import TopRated from "./TopRated";
-import { fetchTopMovie, fetchVideoKey } from "../api/fetch";
-import Popular from "./Popular";
-import Upcoming from "./Upcoming";
+import { fetchTopMovie, fetchVideoKey, fetchTopMovies, fetchPopular, fetchUpcoming } from "../api/fetch";
 import Favorites from "./Favorites";
-// import MoviesContainer from "./MoviesContainer";
+import MoviesContainer from "./MoviesContainer";
 
 function Movies() {
   const [bannerObject, setBannerObject] = useState('');
@@ -23,12 +20,9 @@ function Movies() {
       </Banner>
       <main className="w-full text-white">
         <Favorites />
-        <TopRated />
-        <Popular />
-        <Upcoming />
-        {/* <MoviesContainer title='Top Rated' fetchFunction={fetchTopMovie} />
+        <MoviesContainer title='Top Rated' fetchFunction={fetchTopMovies} />
         <MoviesContainer title='Popular' fetchFunction={fetchPopular} />
-        <MoviesContainer title='Upcoming' fetchFunction={fetchUpcoming} /> */}
+        <MoviesContainer title='Upcoming' fetchFunction={fetchUpcoming} />
       </main>
     </div>
   );

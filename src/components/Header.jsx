@@ -33,6 +33,7 @@ function Header() {
         "px-2"
       );
       searchBar.blur();
+      setSearchObject([]);
       header.classList.remove("h-screen", "items-start");
       header.classList.add("max-h-[60px]", "items-center");
       movieSection.classList.remove("py-4");

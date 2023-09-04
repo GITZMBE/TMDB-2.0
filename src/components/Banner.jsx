@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { fetchGenres } from "../api/fetch";
 import { useRecoilState } from "recoil";
 import { selectedMovieState } from "../contexts/recoil";
+import { twoDigitRating } from "../utils/functions";
 
 function Banner({ topMovie, children }) {
   const [genresList, setGenresList] = useState([]);
@@ -18,8 +19,7 @@ function Banner({ topMovie, children }) {
     backgroundImage: `url('${baseUrl + url}')`,
   };
   const title = topMovie.title;
-  let rating = topMovie.vote_average * 10;
-  rating = rating.toString().substring(0, 2);
+  const rating = twoDigitRating(topMovie.vote_average * 10);
   const releaseDate = topMovie.release_date;
   const synopsis = topMovie.overview;
   const genreIds = topMovie.genre_ids || [];

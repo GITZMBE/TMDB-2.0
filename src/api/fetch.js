@@ -11,7 +11,7 @@ export const fetchTopMovies = async (callback) => {
   };
   const response = await fetch(url, options);
   const results = await response.json();
-  const movies = await results.results;
+  const movies = results.results;
   callback(movies);
 };
 
@@ -27,7 +27,7 @@ export const fetchTopMovie = async (callback) => {
   const response = await fetch(url, options);
   const results = await response.json();
   const movies = await results.results;
-  const topMovie = await movies[0];
+  const topMovie = movies[0];
   callback(topMovie);
 };
 

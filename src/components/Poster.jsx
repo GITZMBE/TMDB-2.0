@@ -5,8 +5,9 @@ import { BiLike } from "react-icons/bi";
 import { LiaPlusCircleSolid, LiaTimesCircle } from "react-icons/lia";
 import { BsDot } from "react-icons/bs";
 import { fetchGenres } from "../api/fetch";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { selectedMovieState } from "../contexts/recoil";
+import { twoDigitRating } from "../utils/functions";
 // import { fetchAddFavorites } from "../utils/fetch";
 
 function Poster({ movie }) {
@@ -28,10 +29,9 @@ function Poster({ movie }) {
   }, []);
   const genreIds = movie.genre_ids || [];
 
-  const [selectedMovie, setSelectedMovie] = useRecoilState(selectedMovieState);
+  const setSelectedMovie = useSetRecoilState(selectedMovieState);
   const handleClick = () => {
     setSelectedMovie(movie);
-    console.log(selectedMovie);
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -66,8 +66,7 @@ function Poster({ movie }) {
 
   const title = movieObject.title;
   const releaseDate = movieObject.release_date;
-  let rating = movieObject.vote_average * 10;
-  rating = rating.toString().substring(0, 2);
+  const rating = twoDigitRating(movieObject.vote_average * 10);
   const url = movieObject.poster_path;
   const bgStyle = {
     backgroundImage: url
