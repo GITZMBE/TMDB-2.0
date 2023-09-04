@@ -6,6 +6,11 @@ export const selectedMovieState = atom({
 })
 
 export const openMenuState = atom({
-    key:'openMenu',
+    key: 'openMenu',
     default: false
+})
+
+export const FavoriteMoviesState = atom({
+    key: 'favoriteMovies',
+    default: []
 })

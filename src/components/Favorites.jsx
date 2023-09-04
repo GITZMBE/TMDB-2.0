@@ -1,76 +1,27 @@
-import React, { useState, useEffect, useRef } from "react";
-// import { fetchFavorites } from "../utils/fetch";
+import React from "react";
 import Poster from "./Poster";
+import Draggable from "./Draggable";
+import { useRecoilState } from "recoil";
+import { FavoriteMoviesState } from "../contexts/recoil";
 
 function Favorites() {
-  const [movies, setMovies] = useState({});
-  useEffect(() => {
-    const updateFavorites = () => {
-      const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
-      setMovies(storedFavorites);
-    };
-    updateFavorites();
-    window.addEventListener("storage", (event) => {
-      if (event.key === "favorites") {
-        updateFavorites();
-      }
-    });
-    return () => {
-      window.removeEventListener("storage", updateFavorites);
-    };
-  }, []);
+  const [favorites] = useRecoilState(FavoriteMoviesState);
 
-  const scrollContainerRef = useRef(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
-  const handleMouseDown = (e) => {
-    setIsDragging(true);
-    setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
-    setScrollLeft(scrollContainerRef.current.scrollLeft);
-    scrollContainerRef.current.style.cursor = 'grabbing';
-  };
-  const handleMouseUp = () => {
-    if (isDragging) {
-      setIsDragging(false);
-      scrollContainerRef.current.style.cursor = 'grab';
-    }
-  };
-  const handleMouseLeave = () => {
-    if (isDragging) {
-      setIsDragging(false);
-      scrollContainerRef.current.style.cursor = 'grab';
-    }
-  };
-  const handleMouseMove = (e) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    const x = e.pageX - scrollContainerRef.current.offsetLeft;
-    const walk = (x - startX) * 1.5;
-    scrollContainerRef.current.scrollLeft = scrollLeft - walk;
-  };
-
-  return Object.keys(movies).length > 0 && (
-    <div className="py-4 px-4 sm:px-12">
-      <h2 className="font-bold text-3xl">Favorites</h2>
-      <div 
-        id='popular' 
-        className="overflow-auto hide-scrollbar py-4"
-        ref={scrollContainerRef}
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseLeave}
-        onMouseMove={handleMouseMove}
-        >
-        <div 
-          className="flex gap-4" 
-        >
-          {movies.map(movie => (
-            <Poster key={movie.id} movie={movie} />
-          ))}
+  return (
+    <>
+      {Object.keys(favorites).length > 0 ? (
+        <div className='py-4 px-4 sm:px-12'>
+          <h2 className='font-bold text-3xl'>Favorites</h2>
+          <Draggable>
+            <div className='flex gap-4'>
+              {favorites.map((movie) => (
+                <Poster key={movie.id} movie={movie} />
+              ))}
+            </div>
+          </Draggable>
         </div>
-      </div>      
-    </div>
+      ) : null}
+    </>
   );
 }
 

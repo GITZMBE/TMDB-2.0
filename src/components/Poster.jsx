@@ -5,23 +5,16 @@ import { BiLike } from "react-icons/bi";
 import { LiaPlusCircleSolid, LiaTimesCircle } from "react-icons/lia";
 import { BsDot } from "react-icons/bs";
 import { fetchGenres } from "../api/fetch";
-import { useSetRecoilState } from "recoil";
-import { selectedMovieState } from "../contexts/recoil";
-import { twoDigitRating } from "../utils/functions";
-// import { fetchAddFavorites } from "../utils/fetch";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { FavoriteMoviesState, selectedMovieState } from "../contexts/recoil";
+import { getYear, twoDigitRating } from "../utils/functions";
 
 function Poster({ movie }) {
-  const baseUrl = "https://image.tmdb.org/t/p/w780";
+  const baseUrl = "https://image.tmdb.org/t/p/w1280";
   const [movieObject, setMovieObject] = useState({});
-  const [favorites, setFavorites] = useState([]);
   useEffect(() => {
     setMovieObject(movie);
   }, [movie]);
-
-  useEffect(() => {
-    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    setFavorites(storedFavorites);
-  }, []);
 
   const [genresList, setGenresList] = useState([]);
   useEffect(() => {
@@ -38,34 +31,21 @@ function Poster({ movie }) {
     });
   };
 
+  const [favorites, setFavorites] = useRecoilState(FavoriteMoviesState);
   const addToFavorites = () => {
-    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    const isAlreadyAdded = storedFavorites.some(
+    const isAllreadyAdded = favorites.some(
       (favorite) => favorite.id === movie.id
     );
-    if (!isAlreadyAdded) {
-      const updatedFavorites = [...storedFavorites, movie];
-      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-      window.location.reload();
-    }
+    !isAllreadyAdded && setFavorites([...favorites, movie]);
   };
-  const removeFromFavorites = (movieToRemove) => {
-    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    const isAlreadyAdded = storedFavorites.some(
-      (favorite) => favorite.id === movie.id
-    );
-    if (isAlreadyAdded) {
-      window.location.reload();
-    }
-    const updatedFavorites = favorites.filter(
-      (movie) => movie.id !== movieToRemove.id
-    );
-    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-    setFavorites(updatedFavorites);
+  const removeFromFavorites = () => {
+    const isFavorite = favorites.some((favorite) => favorite.id === movie.id);
+    isFavorite &&
+      setFavorites(favorites.filter((favorite) => favorite.id !== movie.id));
   };
 
   const title = movieObject.title;
-  const releaseDate = movieObject.release_date;
+  const releaseDate = getYear(movieObject.release_date);
   const rating = twoDigitRating(movieObject.vote_average * 10);
   const url = movieObject.poster_path;
   const bgStyle = {
@@ -90,20 +70,14 @@ function Poster({ movie }) {
       >
         <div
           style={bgStyle}
-          className='group relative w-[150px] aspect-poster background-center rounded overflow-hidden transitioning'
+          className='group relative w-posterWidth aspect-poster background-center rounded overflow-hidden transitioning'
           onMouseOver={showDetails}
           onMouseLeave={hideDetails}
-        >
-          {/* <div className='flex justify-center items-center w-full h-full group-hover:backdrop-brightness-50'>
-            <p className='text-center px-2 hidden group-hover:block text-lg text-white font-bold'>
-              {title}
-            </p>
-          </div> */}
-        </div>
+        ></div>
       </Link>
       <div
         id='details'
-        className={`absolute left-[150px] top-0 z-10 space-y-2 text-white bg-primary hover:pl-4 hover:py-2 h-full w-0 hover:w-[150px] aspect-poster overflow-hidden transitioning ${detailsStyle}`}
+        className={`absolute -left-4 sm:left-posterWidth top-0 z-10 space-y-2 text-white bg-primary hover:px-4 hover:py-2 h-full w-0 hover:w-posterWidth aspect-poster overflow-hidden transitioning ${detailsStyle}`}
         onMouseOver={showDetails}
         onMouseLeave={hideDetails}
       >
@@ -117,16 +91,13 @@ function Poster({ movie }) {
               className='opacity-50 hover:opacity-100'
             />
           </button>
-          <button
-            className='rounded-full'
-            onClick={() => removeFromFavorites(movie)}
-          >
+          <button className='rounded-full' onClick={removeFromFavorites}>
             <LiaTimesCircle
               size={32}
               className='opacity-50 hover:opacity-100'
             />
           </button>
-          <button className='rounded-full' onClick={() => {}}>
+          <button className='rounded-full' onClick={addToFavorites}>
             <BiLike
               size={26}
               className='opacity-50 hover:opacity-100 p-1 mx-1 border-white border-2 rounded-full'

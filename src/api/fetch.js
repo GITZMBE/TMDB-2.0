@@ -113,39 +113,6 @@ export const fetchRelated = async (id, callback) => {
   callback(movies);
 };
 
-export const fetchFavorites = async (callback) => {
-  const url = "https://api.themoviedb.org/3/account/20315792/favorite/movies?language=en-US&page=1&sort_by=created_at.asc";
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization:
-      `Bearer ${AUTHENTICATION_KEY}`,
-    },
-  };
-  const response = await fetch(url, options);
-  const results = await response.json();
-  const movies = results.results;
-  callback(movies);
-};
-
-export const fetchAddFavorites = async (object, callback) => {
-  const url = "https://api.themoviedb.org/3/account/20315792/favorite";
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization:
-      `Bearer ${AUTHENTICATION_KEY}`,
-      body: JSON.stringify(`'${object}'`),
-    },
-  };
-  const response = await fetch(url, options);
-  const results = await response.json();
-  const movies = results.results;
-  callback(movies);
-};
-
 export const fetchGenres = async (callback) => {
   const url = "https://api.themoviedb.org/3/genre/movie/list?language=en";
   const options = {

@@ -6,6 +6,7 @@ module.exports = {
     extend: {
       spacing: {
         headerHeight: '60px',
+        posterWidth: '150px',
       },
       colors: {
         primary: "#0D1C28",
@@ -39,16 +40,18 @@ module.exports = {
             padding: '0',
           },
           to: { 
-            width: '166px',
+            width: '182px',
             paddingLeft: '16px',
+            paddingRight: '16px',
             paddingTop: '8px',
             paddingBottom: '8px',
           },
         },
         'hide-details': {
           from: { 
-            width: '166px',
+            width: '182px',
             paddingLeft: '16px',
+            paddingRight: '16px',
             paddingTop: '8px',
             paddingBottom: '8px',
           },
