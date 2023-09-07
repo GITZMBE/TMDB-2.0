@@ -37,20 +37,17 @@ export const fetchVideoKey = async (id, callback) => {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization:
-      `Bearer ${AUTHENTICATION_KEY}`,
+      Authorization: `Bearer ${AUTHENTICATION_KEY}`,
     },
   };
-  const response = await fetch(
-    url,
-    options
-  );
+  const response = await fetch(url, options);
   const results = await response.json();
   callback(results.results[0]);
 };
 
 export const fetchPopular = async (callback) => {
-  const url = "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1";
+  const url =
+    "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1";
   const options = {
     method: "GET",
     headers: {
@@ -58,10 +55,7 @@ export const fetchPopular = async (callback) => {
       Authorization: `Bearer ${AUTHENTICATION_KEY}`,
     },
   };
-  const response = await fetch(
-    url,
-    options
-  );
+  const response = await fetch(url, options);
   const results = await response.json();
   const data = results.results;
   callback(data);
@@ -83,7 +77,8 @@ export const fetchQuery = async (query, callback) => {
 };
 
 export const fetchUpcoming = async (callback) => {
-  const url = "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1";
+  const url =
+    "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1";
   const options = {
     method: "GET",
     headers: {
@@ -103,8 +98,7 @@ export const fetchRelated = async (id, callback) => {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization:
-      `Bearer ${AUTHENTICATION_KEY}`,
+      Authorization: `Bearer ${AUTHENTICATION_KEY}`,
     },
   };
   const response = await fetch(url, options);
@@ -119,8 +113,7 @@ export const fetchGenres = async (callback) => {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization:
-      `Bearer ${AUTHENTICATION_KEY}`,
+      Authorization: `Bearer ${AUTHENTICATION_KEY}`,
     },
   };
   const response = await fetch(url, options);
@@ -136,8 +129,7 @@ export const fetchProviders = async (callback) => {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization:
-      `Bearer ${AUTHENTICATION_KEY}`,
+      Authorization: `Bearer ${AUTHENTICATION_KEY}`,
     },
   };
   const response = await fetch(url, options);
@@ -152,8 +144,7 @@ export const fetchMovieCredits = async (id, callback) => {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization:
-      `Bearer ${AUTHENTICATION_KEY}`,
+      Authorization: `Bearer ${AUTHENTICATION_KEY}`,
     },
   };
   const response = await fetch(url, options);
@@ -168,8 +159,7 @@ export const fetchReviews = async (id, callback) => {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization:
-      `Bearer ${AUTHENTICATION_KEY}`,
+      Authorization: `Bearer ${AUTHENTICATION_KEY}`,
     },
   };
   const response = await fetch(url, options);
@@ -178,14 +168,19 @@ export const fetchReviews = async (id, callback) => {
   callback(reviews);
 };
 
-export const fetchFilter = async (genreId, page, translation, year, callback) => {
+export const fetchFilter = async (
+  genreId,
+  page,
+  translation,
+  year,
+  callback
+) => {
   const url = `https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&page=${page}&language=${translation}&with_release_year=${year}`;
   const options = {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization:
-      `Bearer ${AUTHENTICATION_KEY}`,
+      Authorization: `Bearer ${AUTHENTICATION_KEY}`,
     },
   };
   const response = await fetch(url, options);
@@ -200,8 +195,7 @@ export const fetchTranslations = async (callback) => {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization:
-      `Bearer ${AUTHENTICATION_KEY}`,
+      Authorization: `Bearer ${AUTHENTICATION_KEY}`,
     },
   };
   const response = await fetch(url, options);
@@ -215,8 +209,7 @@ export const fetchLanguages = async (callback) => {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization:
-      `Bearer ${AUTHENTICATION_KEY}`,
+      Authorization: `Bearer ${AUTHENTICATION_KEY}`,
     },
   };
   const response = await fetch(url, options);
@@ -230,8 +223,7 @@ export const fetchCountries = async (callback) => {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization:
-      `Bearer ${AUTHENTICATION_KEY}`,
+      Authorization: `Bearer ${AUTHENTICATION_KEY}`,
     },
   };
   const response = await fetch(url, options);

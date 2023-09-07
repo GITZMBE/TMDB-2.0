@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import YouTube from 'react-youtube';
+import YouTube from "react-youtube";
 
 export function Trailer({ videoKey }) {
-  const [videoStyle, setVideoStyle] = useState('');
+  const [videoStyle, setVideoStyle] = useState("");
   const handleEnd = () => {
-    setVideoStyle('animate-fade-out');
+    setVideoStyle("animate-fade-out");
   };
   const handlePlay = () => {
-    setVideoStyle('animate-fade-in');
+    setVideoStyle("animate-fade-in");
   };
 
-  const opts={
-    width: '100%',
-    height: '100%',
+  const opts = {
+    width: "100%",
+    height: "100%",
     playerVars: {
       loop: 1,
       autoplay: 1,
@@ -22,16 +22,16 @@ export function Trailer({ videoKey }) {
       rel: 0,
       modestbranding: 1,
     },
-  }
+  };
 
   return (
-    <YouTube 
-      id='trailer' 
+    <YouTube
+      id='trailer'
       className={`absolute top-0 bottom-0 left-0 right-0 w-full h-full opacity-0 ${videoStyle}`}
-      videoId={videoKey} 
-      opts={opts} 
-      onEnd={handleEnd} 
-      onPlay={handlePlay} 
+      videoId={videoKey}
+      opts={opts}
+      onEnd={handleEnd}
+      onPlay={handlePlay}
     />
   );
 }

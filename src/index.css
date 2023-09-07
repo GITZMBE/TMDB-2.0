@@ -18,6 +18,10 @@
     @apply scroll-smooth;
   }
 
+  body::-webkit-scrollbar, html::-webkit-scrollbar {
+    @apply w-0 xs:w-4
+  }
+
   ::-webkit-scrollbar {
     @apply w-[12px];
   }

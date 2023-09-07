@@ -1,16 +1,21 @@
 import { atom } from "recoil";
 
 export const selectedMovieState = atom({
-    key: 'selectedMovie',
-    default: {}
-})
+  key: "selectedMovie",
+  default: {},
+});
 
 export const openMenuState = atom({
-    key: 'openMenu',
-    default: false
-})
+  key: "openMenu",
+  default: false,
+});
+
+export const openSearchState = atom({
+  key: "openSearch",
+  default: false,
+});
 
 export const FavoriteMoviesState = atom({
-    key: 'favoriteMovies',
-    default: []
-})
+  key: "favoriteMovies",
+  default: [],
+});

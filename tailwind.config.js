@@ -4,6 +4,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx}"],
   theme: {
     extend: {
+      screens: {
+        'xs': '480px',
+      },
       spacing: {
         headerHeight: '60px',
         posterWidth: '150px',
@@ -66,8 +69,8 @@ module.exports = {
           },
           to: {
             width: '100vw',
-            paddingLeft: '3rem',
-            paddingRight: '3rem',
+            paddingLeft: '1rem',
+            paddingRight: '1rem',
           }
         },
         'hide-menu': {
@@ -86,8 +89,8 @@ module.exports = {
         "fade-out": 'fade-out 1s ease-in-out forwards 3s',
         'show-details': 'show-details 100ms ease-in-out forwards 300ms',
         'hide-details': 'hide-details ease-in-out forwards',
-        'show-menu': 'show-menu ease-in-out forwards 300ms',
-        'hide-menu': 'hide-menu ease-in-out forwards 300ms',
+        'show-menu': 'show-menu ease-in-out forwards 100ms',
+        'hide-menu': 'hide-menu ease-in-out forwards 100ms',
       }
     },
   },

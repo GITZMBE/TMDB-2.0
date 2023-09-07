@@ -39,8 +39,8 @@ function Providers() {
   };
 
   return (
-    <div id='providers' className="w-full px-12" >
-      <div 
+    <div id='providers' className='w-full px-12'>
+      <div
         className='flex overflow-hidden'
         ref={scrollContainerRef}
         onMouseDown={handleMouseDown}
@@ -60,7 +60,7 @@ function Providers() {
               );
             })
           : null}
-      </div>      
+      </div>
     </div>
   );
 }

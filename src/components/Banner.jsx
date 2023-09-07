@@ -41,7 +41,7 @@ function Banner({ topMovie, children }) {
           id='filter'
           className='absolute top-0 left-0 bottom-0 right-0 text-white pt-[60px] pb-8 px-4 sm:px-12 w-full bg-gradient-to-r from-black from-30% opacity-90'
         >
-          <div className='flex flex-col justify-center gap-2 md:w-3/5 lg:w-2/5 h-full'>
+          <div className='hidden xs:flex flex-col justify-center gap-2  md:w-3/5 lg:w-2/5 h-full'>
             <div id='title-container' className='flex items-center gap-4 py-2'>
               <h1 className='text-3xl sm:text-5xl font-bold'>{title}</h1>
               <AiFillPlayCircle
@@ -63,7 +63,7 @@ function Banner({ topMovie, children }) {
             <p className='max-h-16 sm:max-h-none overflow-y-hidden text-sm sm:text-base'>
               {synopsis}
             </p>
-            <p className='flex gap-2'>
+            <p className='flex flex-wrap gap-2'>
               {Object.keys(genreIds).length > 0
                 ? genreIds.map((genreId, index) =>
                     genresList.map((genreItem) =>

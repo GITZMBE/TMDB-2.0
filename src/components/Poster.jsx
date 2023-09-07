@@ -63,10 +63,11 @@ function Poster({ movie }) {
   };
 
   return (
-    <div className='relative flex rounded'>
+    <div className='relative flex rounded w-posterWidth aspect-poster'>
       <Link
         to={window.location.pathname !== "" ? "../moreInfo" : "moreInfo"}
         onClick={handleClick}
+        className='w-posterWidth'
       >
         <div
           style={bgStyle}
@@ -77,7 +78,7 @@ function Poster({ movie }) {
       </Link>
       <div
         id='details'
-        className={`absolute -left-4 sm:left-posterWidth top-0 z-10 space-y-2 text-white bg-primary hover:px-4 hover:py-2 h-full w-0 hover:w-posterWidth aspect-poster overflow-hidden transitioning ${detailsStyle}`}
+        className={`absolute -left-4 top-0 z-10 space-y-2 text-white bg-primary hover:px-4 hover:py-2 h-full w-0 hover:w-posterWidth aspect-poster overflow-hidden transitioning ${detailsStyle}`}
         onMouseOver={showDetails}
         onMouseLeave={hideDetails}
       >
@@ -94,7 +95,7 @@ function Poster({ movie }) {
           <button className='rounded-full' onClick={removeFromFavorites}>
             <LiaTimesCircle
               size={32}
-              className='opacity-50 hover:opacity-100'
+              className='opacity-50 hover:opacity-100 '
             />
           </button>
           <button className='rounded-full' onClick={addToFavorites}>
@@ -105,10 +106,10 @@ function Poster({ movie }) {
           </button>
         </div>
         <Link
-        to={window.location.pathname !== "" ? "../moreInfo" : "moreInfo"}
-        onClick={handleClick}
+          to={window.location.pathname !== "" ? "../moreInfo" : "moreInfo"}
+          onClick={handleClick}
         >
-          <h2 className='font-bold text-md'>{title}</h2>
+          <h2 className='py-2 font-bold text-base'>{title}</h2>
         </Link>
         <p className='flex flex-wrap gap-2 font-bold text-white text-sm uppercase'>
           <span className='px-1 sm:px-2 py-[2px] sm:py-[1px] text-xs sm:text-sm rounded bg-green-600'>
@@ -127,7 +128,9 @@ function Poster({ movie }) {
                 genresList.map((genreItem, index) =>
                   genreId === genreItem.id ? (
                     <React.Fragment key={index}>
-                      <span>{genreItem.name}</span>
+                      <span className='text-xs sm:text-sm'>
+                        {genreItem.name}
+                      </span>
                       {i !== genreIds.length - 1 && <BsDot size={22} />}
                     </React.Fragment>
                   ) : null

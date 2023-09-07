@@ -8,15 +8,32 @@ function Reviews({ id }) {
     fetchReviews(id, setReviews);
   }, [id]);
   return (
-    <div id='reviews' className='w-full py-4 space-y-4'>
+    <div
+      id='reviews'
+      className={`w-full ${
+        Object.keys(reviews).length > 0 && "py-4"
+      } space-y-4`}
+    >
       {Object.keys(reviews).length > 0
         ? reviews.map((review, index) => (
             <div key={index} className='space-y-2 p-4 bg-secondary rounded-xl'>
-              <p>Written by <span className="text-quaternary">{review.author}</span><br />Posted at <span className="text-quaternary">{splitReviewsDate(review.created_at)}</span></p>
-              {/* <h2 className='text-xl font-semibold'>
-                {review.author.toUpperCase()}
-              </h2> */}
-              <p className="w-full">{review.content} <span className="w-full text-right text-quaternary">Latest updated at {splitReviewsDate(review.updated_at)}</span></p>
+              <p>
+                Written by{" "}
+                <span className='text-quaternary'>{review.author}</span>
+                <br />
+                Posted at{" "}
+                <span className='text-quaternary'>
+                  {splitReviewsDate(review.created_at)}
+                </span>
+              </p>
+              <p className='flex flex-col w-full'>
+                <span className='w-full max-h-48 overflow-y-hidden'>
+                  {review.content}
+                </span>
+                <span className='w-full text-right text-quaternary'>
+                  Latest updated at {splitReviewsDate(review.updated_at)}
+                </span>
+              </p>
             </div>
           ))
         : null}

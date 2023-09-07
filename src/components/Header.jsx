@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { BiSearch } from "react-icons/bi";
-import { AiOutlineMenu } from "react-icons/ai";
+import { AiFillHome, AiOutlineMenu } from "react-icons/ai";
 import { fetchQuery } from "../api/fetch";
 import Poster from "./Poster";
 import Menu from "./Menu";
 import { useRecoilState } from "recoil";
-import { openMenuState } from "../contexts/recoil";
+import { openMenuState, openSearchState } from "../contexts/recoil";
 import Logo from "../assets/Logo";
+import { BsFilterSquare } from "react-icons/bs";
 
 function Header() {
-  const [openSearch, setOpenSearch] = useState(false);
+  const [openSearch, setOpenSearch] = useRecoilState(openSearchState);
+  const [menuOpen, setMenuOpen] = useRecoilState(openMenuState);
+  const openMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
   const [backgroundOpacity, setBackgroundOpacity] = useState(0);
   useEffect(() => {
     const searchBar = document.getElementById("searchBar");
@@ -18,32 +23,29 @@ function Header() {
     const movieSection = document.getElementById("movieSection");
     if (openSearch) {
       searchBar.classList.remove("w-0");
-      searchBar.classList.add("w-[50vw]", "sm:w-[70vw]", "md:w-[75vw]", "px-2");
+      searchBar.classList.add("w-full", "px-2");
       searchBar.focus();
-      header.classList.add("h-screen", "items-start");
-      header.classList.remove("max-h-[60px]", "items-center");
-      movieSection.classList.add("py-4");
+      header.classList.add("h-screen", "min-h-screen", "items-start");
+      header.classList.remove("sm:max-h-[60px]", "items-center");
+      movieSection.classList.add("h-full", "py-4");
       setBackgroundOpacity(1);
+      setMenuOpen(false);
     } else {
       searchBar.classList.add("w-0");
-      searchBar.classList.remove(
-        "w-[50vw]",
-        "sm:w-[70vw]",
-        "md:w-[75vw]",
-        "px-2"
-      );
+      searchBar.classList.remove("w-full", "px-2");
       searchBar.blur();
       setSearchObject([]);
-      header.classList.remove("h-screen", "items-start");
-      header.classList.add("max-h-[60px]", "items-center");
-      movieSection.classList.remove("py-4");
+      header.classList.remove("h-screen", "min-h-screen", "items-start");
+      header.classList.add("sm:max-h-[60px]", "items-center");
+      movieSection.classList.remove("h-full", "py-4");
       const calculatedOpacity = Math.min(
         window.scrollY / header.clientHeight,
         1
       );
       setBackgroundOpacity(calculatedOpacity);
     }
-  }, [openSearch]);
+  }, [openSearch, setMenuOpen]);
+  const [searchObject, setSearchObject] = useState({});
   const [search, setSearch] = useState("");
   const handleClick = () => {
     setOpenSearch(!openSearch);
@@ -53,7 +55,7 @@ function Header() {
   const onSearch = (e) => {
     setSearch(e.target.value);
   };
-  const [searchObject, setSearchObject] = useState({});
+
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       fetchQuery(search, setSearchObject);
@@ -61,11 +63,6 @@ function Header() {
   };
   const handleClickPoster = () => {
     setOpenSearch(!openSearch);
-  };
-
-  const [menuOpen, setMenuOpen] = useRecoilState(openMenuState);
-  const openMenu = () => {
-    setMenuOpen(!menuOpen);
   };
 
   window.addEventListener("scroll", () => {
@@ -77,15 +74,24 @@ function Header() {
   return (
     <header
       id='header'
-      className='fixed z-30 flex flex-col justify-start w-full max-h-[60px] overflow-y-hidden bg-quaternary]'
+      className='fixed z-30 flex flex-col justify-start w-full h-[92px] sm:h-[60px] overflow-y-hidden bg-quaternary]'
       style={{ backgroundColor: `rgb(13, 28, 40, ${backgroundOpacity})` }}
     >
-      <div className='flex justify-between items-center w-full h-headerHeight px-4 sm:px-12 z-20'>
-        <Link to={window.location.pathname === "/moreInfo" ? "../" : ""}>
+      <div className='flex flex-col items-center sm:flex-row sm:justify-between sm:items-center gap-4 w-full max-h-[92px] sm:h-headerHeight px-4 sm:px-12 z-20'>
+        <Link
+          to={window.location.pathname === "/moreInfo" ? "../" : ""}
+          onClick={() => {
+            setMenuOpen(false);
+            setOpenSearch(false);
+          }}
+        >
           <Logo display='flex' />
         </Link>
-        <div className='flex gap-4 items-center'>
-          <div id='search-container' className='flex items-center'>
+        <div className='flex gap-4 sm:gap-0 items-center w-full'>
+          <div
+            id='search-container'
+            className='flex justify-end items-center w-full'
+          >
             <input
               type='text'
               id='searchBar'
@@ -102,31 +108,51 @@ function Header() {
               />
             </button>
           </div>
+          <Link
+            to={window.location.pathname === "" ? "" : "../"}
+            className='hidden sm:flex text-lg font-semibold px-2 text-gray-400 hover:text-white'
+            onClick={() => {
+              setMenuOpen(false);
+              setOpenSearch(false);
+            }}
+          >
+            <AiFillHome />
+          </Link>
+          <Link
+            to={window.location.pathname === "" ? "./filter" : "../filter"}
+            className='hidden sm:flex text-lg font-semibold px-2 text-gray-400 hover:text-white'
+            onClick={() => {
+              setMenuOpen(false);
+              setOpenSearch(false);
+            }}
+          >
+            <BsFilterSquare />
+          </Link>
           <AiOutlineMenu
             size={22}
-            className='fill-gray-400 hover:fill-white cursor hidden sm:block cursor-pointer'
+            className='fill-gray-400 hover:fill-white cursor sm:hidden block cursor-pointer'
             onClick={openMenu}
           />
         </div>
       </div>
-      <div className='fixed top-0 flex justify-center w-full'>
-        <div
-          id='movieSection'
-          className='flex flex-wrap items-start gap-4 pt-16 px-12 w-full max-w-[1408px] max-h-full overflow-y-auto hide-scrollbar'
-        >
-          {Object.keys(searchObject).length > 0
-            ? searchObject.map((movie) => (
-                <div
-                  key={movie.id}
-                  className='w-fit h-fit'
-                  onClick={handleClickPoster}
-                >
-                  <Poster movie={movie} />
-                </div>
-              ))
-            : null}
-        </div>
+      {/* <div className='fixed top-0 flex justify-center w-full'> */}
+      <div
+        id='movieSection'
+        className='flex flex-wrap justify-center sm:justify-start items-start gap-4 pt-8 px-12 w-full max-w-[1408px] max-h-full overflow-y-auto hide-scrollbar'
+      >
+        {Object.keys(searchObject).length > 0
+          ? searchObject.map((movie) => (
+              <div
+                key={movie.id}
+                className='w-fit h-fit'
+                onClick={handleClickPoster}
+              >
+                <Poster movie={movie} />
+              </div>
+            ))
+          : null}
       </div>
+      {/* </div> */}
       <Menu />
     </header>
   );

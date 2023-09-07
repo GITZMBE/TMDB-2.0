@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState } from "react";
 
 const MovieContext = createContext();
 
@@ -6,7 +6,9 @@ export function MovieProvider({ children }) {
   const [selectedMovieObject, setSelectedMovieObject] = useState(null);
 
   return (
-    <MovieContext.Provider value={{ selectedMovieObject, setSelectedMovieObject }}>
+    <MovieContext.Provider
+      value={{ selectedMovieObject, setSelectedMovieObject }}
+    >
       {children}
     </MovieContext.Provider>
   );

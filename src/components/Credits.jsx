@@ -48,34 +48,37 @@ function Credits({ id }) {
   return (
     <div id='credits' className='w-full space-y-4'>
       <h2 className='font-bold text-3xl'>Credits</h2>
-        <div className='flex flex-nowrap lg:flex-wrap lg:justify-between gap-4 max-h-[912px] overflow-y-hidden overflow-x-auto hide-scrollbar' ref={scrollContainerRef}
+      <div
+        className='flex flex-nowrap lg:flex-wrap lg:justify-between gap-4 max-h-[912px] overflow-y-hidden overflow-x-auto hide-scrollbar'
+        ref={scrollContainerRef}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseLeave}
-        onMouseMove={handleMouseMove}>
-          {Object.keys(cast).length > 0
-            ? cast.map((person, index) => (
-                <div
-                  key={index}
-                  className='flex flex-col lg:flex-row lg:w-[400px] gap-4 lg:space-x-4 items-center'
-                >
-                  <img
-                    src={
-                      person.profile_path
-                        ? baseUrl + person.profile_path
-                        : "https://www.blunttech.com/storage/blunttech/no-image-available.png"
-                    }
-                    className='min-w-[100px] w-[25vw] lg:max-w-[96px] aspect-square image-center rounded-full'
-                    alt=''
-                  ></img>
-                  <p className='w-full flex flex-col text-center lg:text-left'>
-                    <span>{person.name}</span>
-                    <span className='text-gray-500'>{person.character}</span>
-                  </p>
-                </div>
-              ))
-            : null}
-        </div>
+        onMouseMove={handleMouseMove}
+      >
+        {Object.keys(cast).length > 0
+          ? cast.map((person, index) => (
+              <div
+                key={index}
+                className='flex flex-col lg:flex-row lg:w-[400px] gap-4 lg:space-x-4 items-center'
+              >
+                <img
+                  src={
+                    person.profile_path
+                      ? baseUrl + person.profile_path
+                      : "https://www.blunttech.com/storage/blunttech/no-image-available.png"
+                  }
+                  className='min-w-[100px] w-[25vw] lg:max-w-[96px] aspect-square image-center rounded-full'
+                  alt=''
+                ></img>
+                <p className='w-full flex flex-col text-center lg:text-left'>
+                  <span>{person.name}</span>
+                  <span className='text-gray-500'>{person.character}</span>
+                </p>
+              </div>
+            ))
+          : null}
+      </div>
     </div>
   );
 }
