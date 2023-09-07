@@ -8,6 +8,7 @@ import { fetchGenres } from "../api/fetch";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { FavoriteMoviesState, selectedMovieState } from "../contexts/recoil";
 import { getYear, twoDigitRating } from "../utils/functions";
+import { saveSelectedMovie } from "../storage/localStorage";
 
 function Poster({ movie }) {
   const baseUrl = "https://image.tmdb.org/t/p/w1280";
@@ -25,6 +26,7 @@ function Poster({ movie }) {
   const setSelectedMovie = useSetRecoilState(selectedMovieState);
   const handleClick = () => {
     setSelectedMovie(movie);
+    saveSelectedMovie(movie);
     window.scrollTo({
       top: 0,
       behavior: "smooth",
