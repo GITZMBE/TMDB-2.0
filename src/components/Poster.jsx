@@ -8,7 +8,7 @@ import { fetchGenres } from "../api/fetch";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { FavoriteMoviesState, selectedMovieState } from "../states";
 import { getYear, twoDigitRating } from "../utils";
-import { saveSelectedMovie } from "../storage";
+import { getFavoritMovies, saveFavoritMovies, saveSelectedMovie } from "../storage";
 
 function Poster({ movie }) {
   const baseUrl = "https://image.tmdb.org/t/p/w1280";
@@ -34,16 +34,25 @@ function Poster({ movie }) {
   };
 
   const [favorites, setFavorites] = useRecoilState(FavoriteMoviesState);
+  useEffect(() => {
+    const favs = getFavoritMovies();
+    setFavorites(favs);
+  }, [])
   const addToFavorites = () => {
     const isAllreadyAdded = favorites.some(
       (favorite) => favorite.id === movie.id
     );
-    !isAllreadyAdded && setFavorites([...favorites, movie]);
+    if (!isAllreadyAdded) {
+      setFavorites([...favorites, movie]);
+      saveFavoritMovies([...favorites, movie]);
+    }
   };
   const removeFromFavorites = () => {
     const isFavorite = favorites.some((favorite) => favorite.id === movie.id);
-    isFavorite &&
+    if (isFavorite) {
       setFavorites(favorites.filter((favorite) => favorite.id !== movie.id));
+      saveFavoritMovies(favorites.filter((favorite) => favorite.id !== movie.id));
+    }
   };
 
   const title = movieObject.title;
