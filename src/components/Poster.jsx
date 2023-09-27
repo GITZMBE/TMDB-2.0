@@ -6,9 +6,9 @@ import { LiaPlusCircleSolid, LiaTimesCircle } from "react-icons/lia";
 import { BsDot } from "react-icons/bs";
 import { fetchGenres } from "../api/fetch";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { FavoriteMoviesState, selectedMovieState } from "../contexts/recoil";
-import { getYear, twoDigitRating } from "../utils/functions";
-import { saveSelectedMovie } from "../storage/localStorage";
+import { FavoriteMoviesState, selectedMovieState } from "../states";
+import { getYear, twoDigitRating } from "../utils";
+import { saveSelectedMovie } from "../storage";
 
 function Poster({ movie }) {
   const baseUrl = "https://image.tmdb.org/t/p/w1280";
@@ -66,11 +66,7 @@ function Poster({ movie }) {
 
   return (
     <div className='relative flex rounded w-posterWidth aspect-poster'>
-      <Link
-        to={window.location.pathname !== "" ? "../moreInfo" : "moreInfo"}
-        onClick={handleClick}
-        className='w-posterWidth'
-      >
+      <Link to='/moreInfo' onClick={handleClick} className='w-posterWidth'>
         <div
           style={bgStyle}
           className='group relative w-posterWidth aspect-poster background-center rounded overflow-hidden transitioning'
@@ -107,10 +103,7 @@ function Poster({ movie }) {
             />
           </button>
         </div>
-        <Link
-          to={window.location.pathname !== "" ? "../moreInfo" : "moreInfo"}
-          onClick={handleClick}
-        >
+        <Link to='/moreInfo' onClick={handleClick}>
           <h2 className='py-2 font-bold text-base'>{title}</h2>
         </Link>
         <p className='flex flex-wrap gap-2 font-bold text-white text-sm uppercase'>

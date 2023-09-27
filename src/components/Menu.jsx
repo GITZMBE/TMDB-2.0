@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { openMenuState, openSearchState } from "../contexts/recoil";
+import { openMenuState, openSearchState } from "../states";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { AiFillHome } from "react-icons/ai";
 import { BsFilterSquare } from "react-icons/bs";
@@ -32,7 +32,7 @@ function Menu() {
           onClick={clickLink}
         >
           <Link
-            to={window.location.pathname === "" ? "" : "../"}
+            to='/home'
             className='flex flex-grow justify-between items-center w-full'
           >
             Home&ensp;
@@ -44,7 +44,7 @@ function Menu() {
           onClick={clickLink}
         >
           <Link
-            to={window.location.pathname === "" ? "./filter" : "../filter"}
+            to={"/filter"}
             className='flex flex-grow justify-between items-center w-full'
           >
             Filter&ensp;

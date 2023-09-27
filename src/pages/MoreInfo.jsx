@@ -7,9 +7,9 @@ import Related from "../components/Related";
 import { BsDot } from "react-icons/bs";
 import Credits from "../components/Credits";
 import { useRecoilState } from "recoil";
-import { selectedMovieState } from "../contexts/recoil";
+import { selectedMovieState } from "../states";
 import Reviews from "../components/Reviews";
-import { getSelectedMovie } from "../storage/localStorage";
+import { getSelectedMovie } from "../storage";
 
 function MoreInfo() {
   const [selectedMovie, setSelectedMovie] = useRecoilState(selectedMovieState);

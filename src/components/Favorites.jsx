@@ -2,7 +2,7 @@ import React from "react";
 import Poster from "./Poster";
 import Draggable from "./Draggable";
 import { useRecoilState } from "recoil";
-import { FavoriteMoviesState } from "../contexts/recoil";
+import { FavoriteMoviesState } from "../states";
 
 function Favorites() {
   const [favorites] = useRecoilState(FavoriteMoviesState);

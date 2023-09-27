@@ -3,9 +3,9 @@ import { AiFillPlayCircle } from "react-icons/ai";
 import { BsDot } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { fetchGenres } from "../api/fetch";
-import { useRecoilState } from "recoil";
-import { selectedMovieState } from "../contexts/recoil";
-import { getYear, twoDigitRating } from "../utils/functions";
+import { useSetRecoilState } from "recoil";
+import { selectedMovieState } from "../states";
+import { getYear, twoDigitRating } from "../utils";
 
 function Banner({ topMovie, children }) {
   const [genresList, setGenresList] = useState([]);
@@ -23,10 +23,9 @@ function Banner({ topMovie, children }) {
   const releaseDate = getYear(topMovie.release_date);
   const synopsis = topMovie.overview;
   const genreIds = topMovie.genre_ids || [];
-  const [selectedMovie, setSelectedMovie] = useRecoilState(selectedMovieState);
+  const setSelectedMovie = useSetRecoilState(selectedMovieState);
   const handleClick = () => {
     setSelectedMovie(topMovie);
-    console.log(selectedMovie);
   };
 
   return (
@@ -36,7 +35,7 @@ function Banner({ topMovie, children }) {
       className='relative w-full aspect-video min-h-[50vh] max-h-screen background-center'
     >
       {children}
-      <Link to='moreInfo' onClick={handleClick}>
+      <Link to='/moreInfo' onClick={handleClick}>
         <div
           id='filter'
           className='absolute top-0 left-0 bottom-0 right-0 text-white pt-[60px] pb-8 px-4 sm:px-12 w-full bg-gradient-to-r from-black from-30% opacity-90'

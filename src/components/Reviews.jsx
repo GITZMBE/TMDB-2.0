@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { fetchReviews } from "../api/fetch";
-import { splitReviewsDate } from "../utils/functions";
+import { splitReviewsDate } from "../utils";
 
 function Reviews({ id }) {
   const [reviews, setReviews] = useState([]);

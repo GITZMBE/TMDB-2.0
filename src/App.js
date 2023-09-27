@@ -12,9 +12,9 @@ function App() {
         <Routes>
           <Route path='/' element={<Layer />}>
             <Route index element={<Home />} />
-            <Route path='home' element={<Home />} />
-            <Route path='moreInfo' element={<MoreInfo />} />
-            <Route path='filter' element={<Filter />} />
+            <Route path='/home' element={<Home />} />
+            <Route path='/moreInfo' element={<MoreInfo />} />
+            <Route path='/filter' element={<Filter />} />
           </Route>
         </Routes>
       </BrowserRouter>

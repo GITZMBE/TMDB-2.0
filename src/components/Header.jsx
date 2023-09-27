@@ -6,7 +6,7 @@ import { fetchQuery } from "../api/fetch";
 import Poster from "./Poster";
 import Menu from "./Menu";
 import { useRecoilState } from "recoil";
-import { openMenuState, openSearchState } from "../contexts/recoil";
+import { openMenuState, openSearchState } from "../states";
 import Logo from "../assets/Logo";
 import { BsFilterSquare } from "react-icons/bs";
 
@@ -62,22 +62,28 @@ function Header() {
 
   window.addEventListener("scroll", () => {
     const header = document.getElementById("header");
-    setBackgroundOpacity(1)
+    setBackgroundOpacity(1);
     if (!openSearch) {
-      const calculatedOpacity = Math.min(window.scrollY / header.clientHeight, 1);
-      setBackgroundOpacity(calculatedOpacity);      
+      const calculatedOpacity = Math.min(
+        window.scrollY / header.clientHeight,
+        1
+      );
+      setBackgroundOpacity(calculatedOpacity);
     }
   });
 
   return (
     <header
       id='header'
-      className='fixed z-30 flex flex-col justify-start w-full h-[92px] sm:h-[60px] overflow-y-hidden bg-quaternary]'
+      className='fixed z-30 flex flex-col justify-start w-full h-[92px] sm:h-[60px] overflow-y-hidden'
       style={{ backgroundColor: `rgb(13, 28, 40, ${backgroundOpacity})` }}
     >
-      <div className='flex flex-col items-center sm:flex-row sm:justify-between sm:items-center gap-4 w-full max-h-[92px] sm:h-headerHeight px-4 sm:px-12 z-20'>
+      <div
+        className='flex flex-col items-center sm:flex-row sm:justify-between sm:items-center gap-4 w-full max-h-[92px] sm:h-headerHeight px-4 sm:px-12 z-20'
+        style={{ backgroundColor: `rgb(13, 28, 40, ${backgroundOpacity})` }}
+      >
         <Link
-          to={window.location.pathname === "/moreInfo" ? "../" : ""}
+          to=''
           onClick={() => {
             setMenuOpen(false);
             setOpenSearch(false);
@@ -107,7 +113,7 @@ function Header() {
             </button>
           </div>
           <Link
-            to={window.location.pathname === "" ? "" : "../"}
+            to=''
             className='hidden sm:flex text-lg font-semibold px-2 text-gray-400 hover:text-white'
             onClick={() => {
               setMenuOpen(false);
@@ -117,7 +123,7 @@ function Header() {
             <AiFillHome />
           </Link>
           <Link
-            to={window.location.pathname === "" ? "./filter" : "../filter"}
+            to='/filter'
             className='hidden sm:flex text-lg font-semibold px-2 text-gray-400 hover:text-white'
             onClick={() => {
               setMenuOpen(false);
@@ -133,24 +139,24 @@ function Header() {
           />
         </div>
       </div>
-      {/* <div className='fixed top-0 flex justify-center w-full'> */}
-      <div
-        id='movieSection'
-        className='flex flex-wrap justify-center sm:justify-start items-start gap-4 pt-8 px-12 w-full max-w-[1408px] max-h-full overflow-y-auto hide-scrollbar'
-      >
-        {Object.keys(searchObject).length > 0
-          ? searchObject.map((movie) => (
-              <div
-                key={movie.id}
-                className='w-fit h-fit'
-                onClick={handleClickPoster}
-              >
-                <Poster movie={movie} />
-              </div>
-            ))
-          : null}
+      <div className='fixed top-0 flex justify-center items-start w-full max-h-screen overflow-y-auto py-12 sm:py-20 hide-scrollbar'>
+        <div
+          id='movieSection'
+          className='flex flex-wrap justify-center sm:justify-start items-start gap-4 pt-8 px-12 w-full max-w-[1408px]'
+        >
+          {Object.keys(searchObject).length > 0
+            ? searchObject.map((movie) => (
+                <div
+                  key={movie.id}
+                  className='w-fit h-fit'
+                  onClick={handleClickPoster}
+                >
+                  <Poster movie={movie} />
+                </div>
+              ))
+            : null}
+        </div>
       </div>
-      {/* </div> */}
       <Menu />
     </header>
   );
