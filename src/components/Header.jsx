@@ -38,11 +38,6 @@ function Header() {
       header.classList.remove("h-screen", "min-h-screen", "items-start");
       header.classList.add("sm:max-h-[60px]", "items-center");
       movieSection.classList.remove("h-full", "py-4");
-      const calculatedOpacity = Math.min(
-        window.scrollY / header.clientHeight,
-        1
-      );
-      setBackgroundOpacity(calculatedOpacity);
     }
   }, [openSearch, setMenuOpen]);
   const [searchObject, setSearchObject] = useState({});
@@ -67,8 +62,11 @@ function Header() {
 
   window.addEventListener("scroll", () => {
     const header = document.getElementById("header");
-    const calculatedOpacity = Math.min(window.scrollY / header.clientHeight, 1);
-    setBackgroundOpacity(calculatedOpacity);
+    setBackgroundOpacity(1)
+    if (!openSearch) {
+      const calculatedOpacity = Math.min(window.scrollY / header.clientHeight, 1);
+      setBackgroundOpacity(calculatedOpacity);      
+    }
   });
 
   return (
