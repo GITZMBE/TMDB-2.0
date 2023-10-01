@@ -139,7 +139,7 @@ function Header() {
           />
         </div>
       </div>
-      <div className='fixed top-0 flex justify-center items-start w-full max-h-screen overflow-y-auto py-12 sm:py-20 hide-scrollbar'>
+      <div className='fixed top-0 flex justify-center items-start w-full max-h-screen overflow-y-auto py-12 hide-scrollbar'>
         <div
           id='movieSection'
           className='flex flex-wrap justify-center sm:justify-start items-start gap-4 pt-8 px-12 w-full max-w-[1408px]'

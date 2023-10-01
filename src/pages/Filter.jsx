@@ -46,7 +46,7 @@ function Filter() {
   return (
     <div id='filter' className='pt-[92px] sm:pt-headerHeight bg-primary'>
       <div className='px-12 min-h-[100vh]'>
-        <div className='flex flex-wrap gap-4 w-full py-4'>
+        <div className='flex flex-wrap gap-4 w-full pt-8 sm:pt-16 pb-4'>
           <select
             name=''
             id='genre'

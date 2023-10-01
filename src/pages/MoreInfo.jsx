@@ -45,9 +45,7 @@ function MoreInfo() {
     fetchGenres(setGenresList);
   }, []);
 
-  return (
-    <>
-      {Object.keys(selectedMovie).length > 0 ? (
+  return Object.keys(selectedMovie).length > 0 ? (
         <div id='moreInfo'>
           <div className='w-full pb-4 bg-primary text-white space-y-4'>
             <Banner topMovie={selectedMovie}>
@@ -114,9 +112,7 @@ function MoreInfo() {
             </div>
           </div>
         </div>
-      ) : null}
-    </>
-  );
+  ) : null;
 }
 
 export default MoreInfo;
