@@ -5,10 +5,10 @@ import { BiLike } from "react-icons/bi";
 import { LiaPlusCircleSolid, LiaTimesCircle } from "react-icons/lia";
 import { BsDot } from "react-icons/bs";
 import { fetchGenres } from "../api/fetch";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { FavoriteMoviesState, selectedMovieState } from "../states";
+import { useRecoilState } from "recoil";
+import { FavoriteMoviesState } from "../states";
 import { getYear, twoDigitRating } from "../utils";
-import { getFavoritMovies, saveFavoritMovies, saveSelectedMovie } from "../storage";
+import { getFavoritMovies, saveFavoritMovies } from "../storage";
 
 function Poster({ movie }) {
   const baseUrl = "https://image.tmdb.org/t/p/w1280";
@@ -23,10 +23,7 @@ function Poster({ movie }) {
   }, []);
   const genreIds = movie.genre_ids || [];
 
-  const setSelectedMovie = useSetRecoilState(selectedMovieState);
   const handleClick = () => {
-    setSelectedMovie(movie);
-    saveSelectedMovie(movie);
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -75,7 +72,7 @@ function Poster({ movie }) {
 
   return (
     <div className='relative flex rounded w-posterWidth aspect-poster'>
-      <Link to='/moreInfo' onClick={handleClick} className='w-posterWidth'>
+      <Link to={`/moreInfo/${movie.id}`} onClick={handleClick} className='w-posterWidth'>
         <div
           style={bgStyle}
           className='group relative w-posterWidth aspect-poster background-center rounded overflow-hidden transitioning'
@@ -112,7 +109,7 @@ function Poster({ movie }) {
             />
           </button>
         </div>
-        <Link to='/moreInfo' onClick={handleClick}>
+        <Link to={`/moreInfo/${movie.id}`} onClick={handleClick}>
           <h2 className='py-2 font-bold text-base'>{title}</h2>
         </Link>
         <p className='flex flex-wrap gap-2 font-bold text-white text-sm uppercase'>

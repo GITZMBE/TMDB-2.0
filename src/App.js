@@ -13,7 +13,7 @@ function App() {
           <Route path='/' element={<Layer />}>
             <Route index element={<Home />} />
             <Route path='/home' element={<Home />} />
-            <Route path='/moreInfo' element={<MoreInfo />} />
+            <Route path='/moreInfo/:id' element={<MoreInfo />} />
             <Route path='/filter' element={<Filter />} />
           </Route>
         </Routes>

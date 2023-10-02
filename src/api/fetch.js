@@ -1,5 +1,19 @@
 const AUTHENTICATION_KEY = process.env.REACT_APP_AUTHENTICATION_KEY;
 const API_KEY = process.env.REACT_APP_API_KEY;
+export const fetchMovieInfo = async (callback, id) => {
+  const url = `https://api.themoviedb.org/3/movie/${id}`;
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${AUTHENTICATION_KEY}`,
+    },
+  };
+  const response = await fetch(url, options);
+  const results = await response.json();
+  callback(results);
+};
+
 export const fetchTopMovies = async (callback) => {
   const url = "https://api.themoviedb.org/3/movie/top_rated";
   const options = {
