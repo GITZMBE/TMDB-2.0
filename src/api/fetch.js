@@ -189,7 +189,7 @@ export const fetchFilter = async (
   year,
   callback
 ) => {
-  const url = `https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&page=${page}&language=${translation}&with_release_year=${year}`;
+  const url = `https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&page=${page}&language=${translation}&primary_release_year=${year}`;
   const options = {
     method: "GET",
     headers: {
@@ -244,3 +244,17 @@ export const fetchCountries = async (callback) => {
   const results = await response.json();
   callback(results);
 };
+
+export const fetchMoviesByGenre = async (callback, id, page) => {
+  const url = `https://api.themoviedb.org/3/discover/movie?with_genres=${id}&page=${page}`;
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${AUTHENTICATION_KEY}`,
+    },
+  };
+  const response = await fetch(url, options);
+  const results = await response.json();
+  callback(results);
+}

@@ -9,6 +9,7 @@ import { useRecoilState } from "recoil";
 import { openMenuState, openSearchState } from "../states";
 import Logo from "../assets/Logo";
 import { BsFilterSquare } from "react-icons/bs";
+import { MdLocalMovies } from "react-icons/md";
 
 function Header() {
   const [openSearch, setOpenSearch] = useRecoilState(openSearchState);
@@ -131,6 +132,16 @@ function Header() {
             }}
           >
             <BsFilterSquare />
+          </Link>
+          <Link
+            to='/genres'
+            className='hidden sm:flex text-lg font-semibold px-2 text-gray-400 hover:text-white'
+            onClick={() => {
+              setMenuOpen(false);
+              setOpenSearch(false);
+            }}
+          >
+            <MdLocalMovies />
           </Link>
           <AiOutlineMenu
             size={22}

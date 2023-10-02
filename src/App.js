@@ -4,6 +4,8 @@ import Home from "./pages/Home";
 import Layer from "./pages/Layer";
 import MoreInfo from "./pages/MoreInfo";
 import Filter from "./pages/Filter";
+import Genres from "./components/Genres";
+import Genre from "./components/Genre";
 
 function App() {
   return (
@@ -13,8 +15,13 @@ function App() {
           <Route path='/' element={<Layer />}>
             <Route index element={<Home />} />
             <Route path='/home' element={<Home />} />
-            <Route path='/moreInfo/:id' element={<MoreInfo />} />
+            <Route path='/moreInfo'>
+              <Route path=':id' element={<MoreInfo />} />
+            </Route>
             <Route path='/filter' element={<Filter />} />
+            <Route path='/genres' element={<Genres />}>
+              <Route path=':id' element={<Genre />}/>
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>
