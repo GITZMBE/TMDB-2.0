@@ -3,46 +3,255 @@ import { fetchFilter, fetchGenres, fetchTranslations } from "../api/fetch";
 import Poster from "../components/Poster";
 import { BsFilterSquare } from "react-icons/bs";
 
-function Filter() {
-  const [genresList, setGenresList] = useState([]);
-  const [translationsList, setTranslationsList] = useState([]);
-  useEffect(() => {
-    fetchGenres(setGenresList);
-    fetchTranslations(setTranslationsList);
-  }, []);
+const genresData = [
+  {
+      "id": 28,
+      "name": "Action"
+  },
+  {
+      "id": 12,
+      "name": "Adventure"
+  },
+  {
+      "id": 16,
+      "name": "Animation"
+  },
+  {
+      "id": 35,
+      "name": "Comedy"
+  },
+  {
+      "id": 80,
+      "name": "Crime"
+  },
+  {
+      "id": 99,
+      "name": "Documentary"
+  },
+  {
+      "id": 18,
+      "name": "Drama"
+  },
+  {
+      "id": 10751,
+      "name": "Family"
+  },
+  {
+      "id": 14,
+      "name": "Fantasy"
+  },
+  {
+      "id": 36,
+      "name": "History"
+  },
+  {
+      "id": 27,
+      "name": "Horror"
+  },
+  {
+      "id": 10402,
+      "name": "Music"
+  },
+  {
+      "id": 9648,
+      "name": "Mystery"
+  },
+  {
+      "id": 10749,
+      "name": "Romance"
+  },
+  {
+      "id": 878,
+      "name": "Science Fiction"
+  },
+  {
+      "id": 10770,
+      "name": "TV Movie"
+  },
+  {
+      "id": 53,
+      "name": "Thriller"
+  },
+  {
+      "id": 10752,
+      "name": "War"
+  },
+  {
+      "id": 37,
+      "name": "Western"
+  }
+];
+const localesData = [
+  "af-ZA",
+  "ar-AE",
+  "ar-BH",
+  "ar-EG",
+  "ar-IQ",
+  "ar-JO",
+  "ar-LY",
+  "ar-MA",
+  "ar-QA",
+  "ar-SA",
+  "ar-TD",
+  "ar-YE",
+  "be-BY",
+  "bg-BG",
+  "bn-BD",
+  "br-FR",
+  "ca-AD",
+  "ca-ES",
+  "ch-GU",
+  "cs-CZ",
+  "cy-GB",
+  "da-DK",
+  "de-AT",
+  "de-CH",
+  "de-DE",
+  "el-CY",
+  "el-GR",
+  "en-AG",
+  "en-AU",
+  "en-BB",
+  "en-BZ",
+  "en-CA",
+  "en-CM",
+  "en-GB",
+  "en-GG",
+  "en-GH",
+  "en-GI",
+  "en-GY",
+  "en-IE",
+  "en-JM",
+  "en-KE",
+  "en-LC",
+  "en-MW",
+  "en-NZ",
+  "en-PG",
+  "en-TC",
+  "en-US",
+  "en-ZM",
+  "en-ZW",
+  "eo-EO",
+  "es-AR",
+  "es-CL",
+  "es-DO",
+  "es-EC",
+  "es-ES",
+  "es-GQ",
+  "es-GT",
+  "es-HN",
+  "es-MX",
+  "es-NI",
+  "es-PA",
+  "es-PE",
+  "es-PY",
+  "es-SV",
+  "es-UY",
+  "et-EE",
+  "eu-ES",
+  "fa-IR",
+  "fi-FI",
+  "fr-BF",
+  "fr-CA",
+  "fr-CD",
+  "fr-CI",
+  "fr-FR",
+  "fr-GF",
+  "fr-GP",
+  "fr-MC",
+  "fr-ML",
+  "fr-MU",
+  "fr-PF",
+  "ga-IE",
+  "gd-GB",
+  "gl-ES",
+  "he-IL",
+  "hi-IN",
+  "hr-HR",
+  "hu-HU",
+  "id-ID",
+  "it-IT",
+  "it-VA",
+  "ja-JP",
+  "ka-GE",
+  "kk-KZ",
+  "kn-IN",
+  "ko-KR",
+  "ku-TR",
+  "ky-KG",
+  "lt-LT",
+  "lv-LV",
+  "ml-IN",
+  "mr-IN",
+  "ms-MY",
+  "ms-SG",
+  "nb-NO",
+  "nl-BE",
+  "nl-NL",
+  "no-NO",
+  "pa-IN",
+  "pl-PL",
+  "pt-AO",
+  "pt-BR",
+  "pt-MZ",
+  "pt-PT",
+  "ro-MD",
+  "ro-RO",
+  "ru-RU",
+  "si-LK",
+  "sk-SK",
+  "sl-SI",
+  "so-SO",
+  "sq-AL",
+  "sq-XK",
+  "sr-ME",
+  "sr-RS",
+  "sv-SE",
+  "sw-TZ",
+  "ta-IN",
+  "te-IN",
+  "th-TH",
+  "tl-PH",
+  "tr-TR",
+  "uk-UA",
+  "ur-PK",
+  "uz-UZ",
+  "vi-VN",
+  "zh-CN",
+  "zh-HK",
+  "zh-SG",
+  "zh-TW",
+  "zu-ZA"
+];
+const yearsData = Array.from({ length: new Date().getFullYear() - 1900 + 1 }, (year, index) => year);
 
-  const [selectedGenre, setSelectedGenre] = useState("");
-  const changeGenre = (e) => {
-    setSelectedGenre(e.target.value);
+export const Filter = () => {
+  const defaultData = {
+    genre: "28",
+    pages: 1,
+    locale: "en-US",
+    year: new Date().getFullYear(),
   };
-
-  const [page, setPage] = useState(1);
-  const changePage = (e) => {
-    setPage(e.target.value);
-  };
-
-  const [translation, setTranslation] = useState("en-US");
-  const changeTranslation = (e) => {
-    setTranslation(e.target.value);
-  };
-
-  const currentDate = new Date();
-  const currectYear = currentDate.getFullYear();
-  const [year, setYear] = useState("");
-  const changeYear = (e) => {
-    setYear(e.target.value);
-  };
-
-  const filterSearch = () => {
-    selectedGenre !== "" &&
-      page >= 1 &&
-      page <= 1000 &&
-      translation !== "" &&
-      year >= 1900 &&
-      year <= currectYear &&
-      fetchFilter(selectedGenre, page, translation, year, setMovies);
+  const [formData, setFormData] = useState(defaultData);
+  const optionsData = {
+    genres: genresData,
+    locales: localesData,
+    years: yearsData,
   };
   const [movies, setMovies] = useState([]);
+
+  const filterSearch = () => {
+    const { genre, pages, locale, year } = formData;
+
+    if (!genre || !pages || pages < 1 || pages > 2000 || !locale || !year || year > new Date().getFullYear() || year < 1900) return;
+
+    fetchFilter( genre, pages, locale, year, setMovies);
+  };
+
+  useEffect(() => {
+    filterSearch();
+  }, [formData]);
+
   return (
     <div id='filter' className='pt-[92px] sm:pt-headerHeight bg-primary'>
       <div className='px-12 min-h-[100vh]'>
@@ -51,18 +260,17 @@ function Filter() {
             name=''
             id='genre'
             className='bg-secondary text-tertiary px-2 cursor-pointer'
-            onChange={changeGenre}
+            defaultValue={28}
+            onChange={(e) => setFormData((prev) => ({ ...prev, genre: e.target.value }))}
           >
             <option value='' className='text-gray-500'>
               Genre
             </option>
-            {Object.keys(genresList).length > 0
-              ? genresList.map((genre, index) => (
-                  <option key={index} value={genre.id}>
-                    {genre.name}
-                  </option>
-                ))
-              : null}
+            {optionsData.genres.map((genre, index) => (
+              <option key={index} value={genre.id}>
+                {genre.name}
+              </option>
+            ))}
           </select>
           <input
             type='number'
@@ -71,41 +279,36 @@ function Filter() {
             className='bg-secondary text-tertiary pl-2 input-number-btn-none cursor-pointer'
             min={1}
             max={2000}
-            value={page}
-            onChange={changePage}
+            value={formData.pages}
+            onChange={(e) => setFormData((prev) => ({ ...prev, pages: e.target.value }))}
           />
           <select
             name=''
-            id='translation'
+            id='locale'
             className='bg-secondary px-2 text-tertiary hide-scrollbar cursor-pointer'
-            onChange={changeTranslation}
+            defaultValue={'en-US'}
+            onChange={(e) => setFormData((prev) => ({ ...prev, locale: e.target.value }))}
           >
-            <option value='en-US'>en-US</option>
-            <option value='' className='text-gray-500'>
-              Translation
-            </option>
-            {Object.keys(translationsList).length > 0
-              ? translationsList.map((country, index) => (
-                  <option key={index} value={country}>
-                    {country}
-                  </option>
-                ))
-              : null}
+            <option value='' className='text-gray-500'>Language</option>
+            {optionsData.locales.map((country, index) => (
+              <option key={index} value={country}>
+                {country}
+              </option>
+            ))}
           </select>
           <select
-            name=''
             id='releaseYear'
+            name=''
+            defaultValue={new Date().getFullYear()}
             className='bg-secondary text-tertiary hide-scrollbar cursor-pointer'
-            value={year}
-            onChange={changeYear}
+            onChange={(e) => setFormData((prev) => ({ ...prev, year: e.target.value }))}
           >
-            {/* <option value="2023">2023</option> */}
             <option value='' className='text-gray-500'>
               Release Year
             </option>
-            {Array.from({ length: currectYear - 1900 + 1 }, (_, index) => (
-              <option key={currectYear - index} value={currectYear - index}>
-                {currectYear - index}
+            {optionsData.years.map((year, index) => (
+              <option key={new Date().getFullYear() - index} value={new Date().getFullYear() - index}>
+                {new Date().getFullYear() - index}
               </option>
             ))}
           </select>
